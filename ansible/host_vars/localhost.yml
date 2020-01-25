@@ -1,7 +1,7 @@
 ---
 
 # This will redefine entire list defined in group_vars/test.tml
-# sample_users:
-#   - charlie
+sample_users:
+  - charlie
 
 # Can I extend / reduce / somehow else alter parent list?
