@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS WTF</title>
+    <style>
+      .container { width: 800px; display: flex; background: yellow }
+      .item { flex-grow: 1; height: 200px; background: #ddd }
+      .item+.item { margin-left: 20px }
+      .inner { background: #aaa; width: 100% }
+    </style>
+  </head>
+  <body>
+
+  <div class="container">
+
+    <div class="item">
+      <div class="inner">AAA</div>
+    </div>
+
+    <div class="item">
+      <div class="inner">BBB<br>BBB<BB></div>
+    </div>
+
+    <div class="item">
+      <div class="inner">CCC<br>CCC</div>
+    </div>
+
+  </div>
+
+  </body>
+</html>
