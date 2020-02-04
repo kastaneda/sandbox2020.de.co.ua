@@ -4,64 +4,64 @@ permalink: /index.html
 
 gems:
 
-  - file: agate.jpg
+  - file: img/agate.jpg
     name: Агат звичайний
 
-  - file: agate_purple.jpg
+  - file: img/agate_purple.jpg
     name: Агат фіолетовий
 
-  - file: amethyst_brush.jpg
+  - file: img/amethyst_brush.jpg
     name: Аметистова щітка
 
-  - file: ammonite.jpg
+  - file: img/ammonite.jpg
     name: Амоніт
 
-  - file: hematite.jpg
+  - file: img/hematite.jpg
     name: Гематит
 
-  - file: geode_quarts.jpg
+  - file: img/geode_quarts.jpg
     name: Жеода з кварцем
 
-  - file: quartz.jpg
+  - file: img/quartz.jpg
     name: Кварц
 
-  - file: lapis_lazuli.jpg
+  - file: img/lapis_lazuli.jpg
     name: Лазурит
 
-  - file: malachite.jpg
+  - file: img/malachite.jpg
     name: Малахіт
 
-  - file: malachite_raw.jpg
+  - file: img/malachite_raw.jpg
     name: Малахіт (сировина)
 
-  - file: obsidian.jpg
+  - file: img/obsidian.jpg
     name: Обсидіан
 
-  - file: snow_obsidian.jpg
+  - file: img/snow_obsidian.jpg
     name: Сніжний обсидіан 
 
-  - file: tigers_eye.jpg
+  - file: img/tigers_eye.jpg
     name: Тигрове око
 
-  - file: falcons_eye.jpg
+  - file: img/falcons_eye.jpg
     name: Соколине око
 
-  - file: bulls_eye.jpg
+  - file: img/bulls_eye.jpg
     name: Бичаче око
 
-  - file: pyrite.jpg
+  - file: img/pyrite.jpg
     name: Пірит
 
-  - file: serpentine.jpg
+  - file: img/serpentine.jpg
     name: Серпентин
 
-  - file: emerald.jpg
+  - file: img/emerald.jpg
     name: Смарагд
 
-  - file: tourmaline.jpg
+  - file: img/tourmaline.jpg
     name: Турмалін
 
-  - file: jasper.jpg
+  - file: img/jasper.jpg
     name: Яшма
 
 ---
@@ -76,6 +76,7 @@ gems:
         <!-- link rel="stylesheet" href="photoswipe/default-skin/default-skin.css" -->
         <link rel="stylesheet" href="photoswipe/light-skin/light-skin.css">
         <style>
+            body { background: #eda }
             .my-gallery figure {
                 display: inline-block;
                 text-align: center;
@@ -124,9 +125,10 @@ gems:
             endif %}{%
         endfor
     %}<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="img/{{ gem.file }}" itemprop="contentUrl" data-size="{{ img_size }}">
-            <img src="thumbnail/{{ gem.file }}" itemprop="thumbnail" alt="{{ gem.name }}"
-                width="200" height="200" />
+        <a href="{{ gem.file }}" itemprop="contentUrl" data-size="{{ img_size }}">
+            <img src="{{ gem.file | replace_first: 'img/', 'thumbnail/' }}"
+                alt="{{ gem.name }}"
+                itemprop="thumbnail" width="200" height="200" />
         </a>
         <figcaption itemprop="caption description">{{ gem.name }}</figcaption>
     </figure>
