@@ -1,0 +1,145 @@
+---
+layout: null
+permalink: /index.html
+
+gems:
+
+  - file: agate.jpg
+    name: Агат звичайний
+
+  - file: agate_purple.jpg
+    name: Агат фіолетовий
+
+  - file: amethyst_brush.jpg
+    name: Аметистова щітка
+
+  - file: ammonite.jpg
+    name: Амоніт
+
+  - file: hematite.jpg
+    name: Гематит
+
+  - file: geode_quarts.jpg
+    name: Жеода з кварцем
+
+  - file: quartz.jpg
+    name: Кварц
+
+  - file: lapis_lazuli.jpg
+    name: Лазурит
+
+  - file: malachite.jpg
+    name: Малахіт
+
+  - file: malachite_raw.jpg
+    name: Малахіт (сировина)
+
+  - file: obsidian.jpg
+    name: Обсидіан
+
+  - file: snow_obsidian.jpg
+    name: Сніжний обсидіан 
+
+  - file: tigers_eye.jpg
+    name: Тигрове око
+
+  - file: falcons_eye.jpg
+    name: Соколине око
+
+  - file: bulls_eye.jpg
+    name: Бичаче око
+
+  - file: pyrite.jpg
+    name: Пірит
+
+  - file: serpentine.jpg
+    name: Серпентин
+
+  - file: emerald.jpg
+    name: Смарагд
+
+  - file: tourmaline.jpg
+    name: Турмалін
+
+  - file: jasper.jpg
+    name: Яшма
+
+---
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Геологічна колекція</title>
+        <link rel="stylesheet" href="photoswipe/photoswipe.css"> 
+        <!-- link rel="stylesheet" href="photoswipe/default-skin/default-skin.css" -->
+        <link rel="stylesheet" href="photoswipe/light-skin/light-skin.css">
+        <style>
+            .my-gallery figure {
+                display: inline-block;
+                text-align: center;
+                border: 1px solid #eee;
+                margin: 10px;
+                padding: 5px 0;
+            }
+
+            .my-gallery figcaption {
+                width: 200px;
+                text-align: center;
+                font-family: Droid Sans;
+                font-size: 110%;
+                line-height: 130%;
+            }
+
+            .pswp__counter,
+            .pswp__share-tooltip a,
+            .pswp__caption small,
+            .pswp__caption__center {
+                font-size: 1.1rem;
+                line-height: 1.3rem;
+            }
+
+            .pswp__counter {
+                position: absolute;
+                left: 0;
+                top: 0;
+                line-height: 2rem;
+                height: 2rem;
+                padding: 0 1rem;
+            }
+        </style> 
+    </head>
+    <body>
+        <h1>Геологічна колекція</h1>
+
+<div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+{% for gem in page.gems %}
+
+    {%
+        assign img_size = "FIXME" %}{%
+        for item in site.data.images %}{%
+            if item.file == gem.file %}{%
+                assign img_size = item.width | append: "x" | append: item.height %}{%
+            endif %}{%
+        endfor
+    %}<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="img/{{ gem.file }}" itemprop="contentUrl" data-size="{{ img_size }}">
+            <img src="img/thumbnail/{{ gem.file }}" itemprop="thumbnail" alt="{{ gem.name }}"
+                width="200" height="200" />
+        </a>
+        <figcaption itemprop="caption description">{{ gem.name }}</figcaption>
+    </figure>
+
+{% endfor %}
+</div>
+
+        {% include pswp.html %}
+        <script src="photoswipe/photoswipe.js"></script> 
+        <script src="photoswipe/photoswipe-ui-default.js"></script> 
+        <script>
+            {% include pswpFromDOM.js %}
+            initPhotoSwipeFromDOM('.my-gallery');
+        </script>
+    </body>
+</html>
