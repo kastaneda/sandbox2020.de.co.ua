@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testing CSS Flexbox</title>
+    <style>
+      html, body, .inner > *, nav * { margin: 0; padding: 0 }
+      html, body { min-height: 100% }
+      body { display: flex; flex-direction: column }
+      main { flex: 1 }
+      .inner { max-width: 48em; margin: 0 auto; padding: 1.2em }
+
+      header { border-bottom: medium dashed }
+      main { border-bottom: thin dashed }
+
+      nav { float: right }
+      nav li { display: inline-block }
+      nav li a { color: inherit }
+      nav li+li::before { content: '• ' }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="inner">
+          <h1>Testing CSS Flexbox</h1>
+        </div>
+      </header>
+      <div class="inner">
+        <p>Hello, world!</p>
+      </div>
+    </main>
+    <footer>
+      <div class="inner">
+        <nav>
+          <ul>
+            <li><a href="#">Русский</a></li>
+            <li><a href="#">Українська</a></li>
+          </ul>
+        </nav>
+        <p>© Dmytro K.</p>
+      </div>
+    <footer>
+  </body>
+</html>
