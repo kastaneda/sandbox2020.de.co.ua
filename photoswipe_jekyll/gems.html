@@ -67,81 +67,94 @@ gems:
 ---
 <!DOCTYPE html>
 <html lang="uk">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Геологічна колекція</title>
-        <link rel="stylesheet" href="photoswipe/photoswipe.css"> 
-        <!-- link rel="stylesheet" href="photoswipe/default-skin/default-skin.css" -->
-        <link rel="stylesheet" href="photoswipe/light-skin/light-skin.css">
-        <style>
-            body { background: #eda }
-            .my-gallery figure {
-                display: inline-block;
-                text-align: center;
-                border: 1px solid #eee;
-                margin: 10px;
-                padding: 5px 0;
-            }
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Геологічна колекція</title>
+    <link rel="stylesheet" href="photoswipe/photoswipe.css">
+    <!-- link rel="stylesheet" href="photoswipe/default-skin/default-skin.css" -->
+    <link rel="stylesheet" href="photoswipe/light-skin/light-skin.css">
+    <style>
 
-            .my-gallery figcaption {
-                width: 200px;
-                text-align: center;
-                font-family: Droid Sans;
-                font-size: 110%;
-                line-height: 130%;
-            }
+h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 1em 10px;
+}
 
-            .pswp__counter,
-            .pswp__share-tooltip a,
-            .pswp__caption small,
-            .pswp__caption__center {
-                font-size: 1.1rem;
-                line-height: 1.3rem;
-            }
+h1, figcaption {
+  font-family: Ubuntu, Droid Sans, sans-serif;
+}
 
-            .pswp__counter {
-                position: absolute;
-                left: 0;
-                top: 0;
-                line-height: 2rem;
-                height: 2rem;
-                padding: 0 1rem;
-            }
-        </style> 
-    </head>
-    <body>
-        <h1>Геологічна колекція</h1>
+/* * * Thumbnails list * * * * * * * * * * * * * * * * * * * * * * * */
 
-<div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-{% for gem in page.gems %}
+.my-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: flex-end;
+}
 
-    {%
-        assign img_size = "FIXME" %}{%
-        for item in site.data.images %}{%
-            if item.file == gem.file %}{%
-                assign img_size = item.width | append: "x" | append: item.height %}{%
-            endif %}{%
-        endfor
-    %}<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+.my-gallery figure {
+  display: block;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+.my-gallery figcaption {
+  background: #eee;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+/* * * PhotoSwipe styles * * * * * * * * * * * * * * * * * * * * * * */
+
+.pswp__bg { background: #fff }
+
+.pswp__counter,
+.pswp__caption small,
+.pswp__caption__center {
+  font-family: Ubuntu, Droid Sans, sans-serif;
+  font-size: 1.1rem;
+  line-height: 44px;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    </style>
+  </head>
+  <body>
+    <h1>Геологічна колекція</h1>
+
+    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+
+{%    for gem in page.gems
+%}{%    assign img_size = "FIXME"
+%}{%    for item in site.data.images
+%}{%      if item.file == gem.file
+%}{%        assign img_size = item.width | append: "x" | append: item.height
+%}{%      endif
+%}{%    endfor %}
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
         <a href="{{ gem.file }}" itemprop="contentUrl" data-size="{{ img_size }}">
-            <img src="{{ gem.file | replace_first: 'img/', 'thumbnail/' }}"
-                alt="{{ gem.name }}"
-                itemprop="thumbnail" width="200" height="200" />
+          <img src="{{ gem.file | replace_first: 'img/', 'thumbnail/' }}" alt="{{ gem.name }}" width="200" height="200" itemprop="thumbnail">
         </a>
         <figcaption itemprop="caption description">{{ gem.name }}</figcaption>
-    </figure>
+      </figure>
 
 {% endfor %}
-</div>
+    </div>
 
-        {% include pswp.html %}
-        <script src="photoswipe/photoswipe.js"></script> 
-        <script src="photoswipe/photoswipe-ui-default.js"></script> 
-        <script>
-            {% include pswpFromDOM.js %}
-            initPhotoSwipeFromDOM('.my-gallery');
-        </script>
-    </body>
+{% include pswp.html %}
+
+    <script src="photoswipe/photoswipe.js"></script>
+    <script src="photoswipe/photoswipe-ui-default.js"></script>
+    <script>
+{% include pswpFromDOM.js %}
+initPhotoSwipeFromDOM('.my-gallery');
+    </script>
+  </body>
 </html>
