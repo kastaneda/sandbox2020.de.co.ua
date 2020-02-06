@@ -183,6 +183,26 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+
+////////////////////////////////////////////////////////////////////////
+
+function supportsWebp() {
+  if (!self.createImageBitmap) return false;
+  
+  const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+  const blob = fetch(webpData).then(r => r.blob());
+  return createImageBitmap(blob).then(() => true, () => false);
+}
+
+    if (supportsWebp()) {
+        console.log('Supports WebP');
+        gallery.listen('gettingData', function(index, item) {
+            item.src = item.src.replace('.jpg', '.webp');
+        });
+    }
+
+////////////////////////////////////////////////////////////////////////
+
         gallery.init();
     };
 

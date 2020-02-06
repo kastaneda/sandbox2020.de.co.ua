@@ -102,13 +102,21 @@ h1, figcaption {
   display: block;
   border: 1px solid #ccc;
   margin: 10px;
+  position: relative;
+  width: 200px; height: 200px;
 }
 
 .my-gallery figcaption {
-  background: #eee;
-  text-align: center;
+  display: block;
+  background: rgba(255, 255, 255, .25);
+  color: #666;
+  text-shadow: 0 0 2px #fff;
   font-size: 1.1rem;
-  line-height: 1.5rem;
+  line-height: 30px;
+  min-height: 30px;
+  padding: 0 6px;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
 }
 
 /* * * PhotoSwipe styles * * * * * * * * * * * * * * * * * * * * * * */
@@ -146,6 +154,16 @@ h1, figcaption {
       </figure>
 
 {% endfor %}
+      <!--
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"
+        style="width: 200px; height: 200px; overflow: hidden">
+        <a href="img/test/cat_4.jpg" itemprop="contentUrl" data-size="640x960">
+          <img src="thumbnail/test/cat_4.jpg" alt="Єто котік"
+            width="200" height="300" itemprop="thumbnail" style="margin: -75px 0 0 0">
+        </a>
+        <figcaption itemprop="caption description">Єто котік</figcaption>
+      </figure>
+      -->
     </div>
 
 {% include pswp.html %}
