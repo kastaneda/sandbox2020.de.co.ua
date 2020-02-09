@@ -1,4 +1,4 @@
 ---
-sample_users:
+sample_users_global:
   - alice
   - bob

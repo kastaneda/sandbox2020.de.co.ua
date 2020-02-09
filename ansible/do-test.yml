@@ -5,7 +5,7 @@
   tasks:
 
     - debug:
-        msg: '{{ sample_users }}'
+        msg: '{{ sample_users + sample_users_global }}'
 
     - debug:
         msg: '{{ vars }}'
