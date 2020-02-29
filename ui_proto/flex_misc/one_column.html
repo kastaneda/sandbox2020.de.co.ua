@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playing with CSS Flexbox</title>
+    <style>
+      html, body, .h100 { margin: 0; padding: 0; min-height: 100% }
+      .container { display: flex; flex-direction: column }
+      .expand { flex: 1 }
+      .in { max-width: 48em; margin: 0 auto; padding: 1.2em; background: white }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="min-height: 100%">
+      <div><div class="in">AAA</div></div>
+      <div style="background: cyan"><div class="in">BBB</div></div>
+      <div class="expand" style="background: yellow"><div class="in">CCC</div></div>
+      <div><div class="in">DDD</div></div>
+    </div>
+  </body>
+</html>
