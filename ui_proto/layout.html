@@ -6,23 +6,32 @@
     <meta charset="utf-8">
     <title>Hello, world!</title>
   </head>
-  <body style="background: #dea; color: maroon">
+  <body style="max-width: 45em">
 
-    <h1>Hello, world!</h1>
+    <h1 style="border-bottom: medium solid">Hello, world!</h1>
+
+    <p><em>For Immediate Release — Internet — Tue Mar 3 00:37:35 EET 2020</em></p>
 
     <svg xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 320 240" style="width: 320px; height: 240px"
-      preserveAspectRatio="xMidYMid meet">
+      viewBox="0 0 320 240" style="width: 320px; height: 240px; float: left; margin: 0 2em 1em 0">
+      <defs>
+        <style type="text/css"><![CDATA[
+          .frame {
+            stroke: black;
+            stroke-width: 3;
+            fill: none;
+          }
+        ]]></style>
+      </defs>
+    
       
-      <line x1="0" y1="0" x2="319" y2="0" stroke="red" />
-      <line x1="0" y1="239" x2="319" y2="239" stroke="red" />
-      
-      <line x1="0" y1="0" x2="0" y2="239" stroke="green" />
-      <line x1="319" y1="0" x2="319" y2="239" stroke="green" />
-      
-      <line x1="0" y1="0" x2="319" y2="239" stroke="#999" />
-      <line x2="0" y1="0" x1="319" y2="239" stroke="#999" />
+      <line x1="0" y1="0" x2="319" y2="239" class="frame" />
+      <line x2="0" y1="0" x1="319" y2="239" class="frame" />
+      <rect x="0" y="0" width="320" height="240" class="frame" />
     </svg>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.</p>
 
   </body>
 </html>
