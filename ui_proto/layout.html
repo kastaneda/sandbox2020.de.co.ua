@@ -5,28 +5,32 @@
   <head>
     <meta charset="utf-8">
     <title>Hello, world!</title>
-    <style>
-<![CDATA[
-
-body { max-width: 45em; margin: 0 auto; background: #dea }
-
-]]>
-    </style>
   </head>
-  <body>
+  <body style="background: #dea; color: maroon">
 
     <h1>Hello, world!</h1>
 
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" 
-      preserveAspectRatio="xMinYMin" style="width: 30em">
-      <line x1="0" y1="0" x2="100" y2="0" stroke="black" />
-      <line x1="0" y1="0" x2="0" y2="100" stroke="black" />
-      <line x1="100" y1="100" x2="100" y2="0" stroke="black" />
-      <line x1="100" y1="100" x2="0" y2="100" stroke="black" />
+    <svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 320 240" style="width: 320px; height: 240px"
+      preserveAspectRatio="xMidYMid meet">
       
-      <line x1="0" y1="0" x2="100" y2="100" stroke="black" />
-      <line x1="100" y1="0" x2="0" y2="100" stroke="black" />
+      <line x1="0" y1="0" x2="319" y2="0" stroke="red" />
+      <line x1="0" y1="239" x2="319" y2="239" stroke="red" />
+      
+      <line x1="0" y1="0" x2="0" y2="239" stroke="green" />
+      <line x1="319" y1="0" x2="319" y2="239" stroke="green" />
+      
+      <line x1="0" y1="0" x2="319" y2="239" stroke="#999" />
+      <line x2="0" y1="0" x1="319" y2="239" stroke="#999" />
     </svg>
 
   </body>
 </html>
+
+<!--
+      <line x1="0" y1="139" x2="319" y2="239" stroke="black" />
+      
+      <line x1="0" y1="0" x2="319" y2="239" stroke="black" />
+      <line x1="319" y1="0" x2="0" y2="239" stroke="black" />
+
+-->
