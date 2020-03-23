@@ -5,112 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Demo Dashboard</title>
     <style>
-      body { max-width: 40em }
-      .no-js { color: maroon }
-
-      .gauge {
-        width: 240px;
-        height: 240px;
-        border-radius: 20px;
-        color: #fff;
-        background: #999;
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
-        overflow: clip;
-        position: relative;
-      }
-
-      .gauge .value {
-        font-size: 72px;
-      }
-
-      .gauge .title,
-      .gauge .ping {
-        position: absolute;
-        width: 100%;
-        color: #ccc;
-      }
-      .gauge .title { font-size: 32px; top: 20px }
-      .gauge .ping { bottom: 20px }
-
+      .dbg { border: 1px dotted red }
+      .container { display: grid }
     </style>
   </head>
   <body>
 
-    <noscript>
-      <div class="no-js">
-        <h1>JavaScript is required.</h1>
-        <p>This page is a web application, and it requires JavaScript to work.</p>
+    <div class="container status-mqtt-offline">
+
+      <div class="dbg box box-header">Blinking LED like a pro™</div>
+
+      <div class="dbg box box-mqtt-status">
+        <div class="if-mqtt-online status-green">MQTT Online</div>
+        <div class="if-mqtt-offline status-red">MQTT Offline</div>
       </div>
-    </noscript>
 
-<!--
 
-  Layout draft
-
-  +-----------------------------------------+------------------+
-  | Long narrow header line                 | MQTT online!     |
-  +-----------------------------------------+------------------+
-  |                                         | Board01 online!  |
-  |  +-------+  +-------+                   +------------------+
-  |  |       |  |  On   |                   |                  |
-  |  | LED01 |  |  Off  |                   |                  |
-  |  |       |  | Toggl |                   |      Webcam      |
-  |  +-------+  +-------+                   |                  |
-  |                                         |                  |
-  +-----------------------------------------+------------------+
-
-  <style>
-    .mqtt-offline .requires-mqtt { opacity: .5 }
-    .board01-offline .if-board01,
-    .board01-online .if-no-board01 { display: none }
-    .board01-online .if-board01,
-    .board01-offline .if-no-board01 { display: block }
-  </style>
-
-  <body class="mqtt-online board01-offline">
-    <div class="widgets-containter requires-mqtt">
-      <div class="gauge">
-        <div class="value if-board01">12.3%</div>
-        <div class="value if-no-board01">Offline</div>
-      </div>
     </div>
-  </body>
 
-  <script>
-    function onBoardDisconnect() {
-      var b = document.querySelector('body');
-      b.classList.add('board01-offline');
-      b.classList.remove('board01-online');
-    }
-  </script>
-
--->
-
-    <main>
-      <h1>WebSockets demo</h1>
-
-      <p>Press <kbd>F12</kbd>, because now everything will go
-         to the <code>console.log()</code>, haha.</p>
-
-      <p>There might be some IoT MQTT Dashboard in future!</p>
-
-      <div class="gauge">
-        <div class="title">Sensor name</div>
-        <div class="value">12.3%</div>
-        <div class="ping">Last update: 15 sec ago</div>
-      </div>
-
-      <form action="">
-        <p>
-          LED on the board:
-          <input type="button" value="Enable" />
-          <input type="button" value="Disable" />
-        </p>
-      </form>
-
-    </main>
 
   </body>
 </html>
