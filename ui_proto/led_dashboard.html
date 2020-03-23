@@ -48,8 +48,6 @@
       .status-red, .status-green { display: inline-block; width: 160px }
       .dummy-img { outline: 1px dotted green; background: #ccc; color: #666; line-height: 240px; width: 320px; text-align: center }
 
-      .btn-key:first-letter { text-decoration: underline }
-
     </style>
   </head>
   <body class="status-mqtt-offline status-board01-offline">
@@ -98,12 +96,14 @@
       window.addEventListener('load', function() {
 
         document.querySelector('.btn-mqtt-toggle').addEventListener('click', function (e) {
+          e.preventDefault();
           var b = document.querySelector('body');
           b.classList.toggle('status-mqtt-online');
           b.classList.toggle('status-mqtt-offline');
         });
 
         document.querySelector('.btn-board01-toggle').addEventListener('click', function (e) {
+          e.preventDefault();
           var b = document.querySelector('body');
           b.classList.toggle('status-board01-online');
           b.classList.toggle('status-board01-offline');
