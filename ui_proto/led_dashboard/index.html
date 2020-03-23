@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Demo Dashboard</title>
     <style>
+
+      .containter-page {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 10px;
+        grid-template-areas:
+          "Header StatusMQTT"
+          "Main   StatusBoard"
+          "Main   Webcam";
+      }
+
+      .box-header         { grid-area: Header }
+      .box-main           { grid-area: Main }
+      .box-status-mqtt    { grid-area: StatusMQTT }
+      .box-status-board01 { grid-area: StatusBoard }
+      .box-webcam         { grid-area: Webcam }
+
       /* decorative */
 
       .status-red { background: #fcc; color: #600 }
@@ -17,12 +35,12 @@
 
       /* debug */
 
-      .dbg { border: 1px dotted red; padding: 10px; margin: 10px }
+      .dbg000 { border: 1px dotted red; padding: 10px; margin: 10px }
 
       /* dummy */
 
       .status-red, .status-green { width: 20em }
-      .box-webcam { background: #eee; color: #666; line-height: 240px; width: 320px; text-align: center }
+      .dummy-img { background: #eee; color: #666; line-height: 240px; width: 320px; text-align: center }
 
     </style>
   </head>
@@ -32,13 +50,12 @@
 
       <div class="dbg box-header">Blinking LED like a pro™</div>
 
-      <div class="dbg box-mqtt-status">
+      <div class="dbg box-status-mqtt">
         <div class="if-mqtt-online status-green">MQTT Online</div>
         <div class="if-mqtt-offline status-red">MQTT Offline</div>
       </div>
 
-      <div class="dbg container-main">
-
+      <div class="dbg box-main container-main">
         <div class="dbg fixme-placeholder">
           title<br>
           led status: on, off<br>
@@ -46,20 +63,15 @@
           control elements: on, off, toggle, blink N times, …<br>
           mini-log: last N commands
         </div>
-
       </div>
 
-      <div class="dbg container-aside">
+      <div class="dbg box-status-board01">
+        <div class="if-board01-online status-green">Board01 Online</div>
+        <div class="if-board01-offline status-red">Board01 Offline</div>
+      </div>
 
-        <div class="dbg box-board01-status">
-          <div class="if-board01-online status-green">Board01 Online</div>
-          <div class="if-board01-offline status-red">Board01 Offline</div>
-        </div>
-
-        <div class="dbg box-webcam">
-          Webcam image
-        </div>
-
+      <div class="dbg box-webcam">
+        <div class="dummy-img">Webcam image</div>
       </div>
 
     </div>
