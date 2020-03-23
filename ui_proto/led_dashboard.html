@@ -8,13 +8,10 @@
 
       .containter-page {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 200px;
+        grid-template-rows: 50px 1fr 1fr;
+        grid-template-areas: "Header StatusMQTT" "Main StatusBoard" "Main Webcam";
         grid-gap: 10px;
-        grid-template-areas:
-          "Header StatusMQTT"
-          "Main   StatusBoard"
-          "Main   Webcam";
       }
 
       .box-header         { grid-area: Header }
