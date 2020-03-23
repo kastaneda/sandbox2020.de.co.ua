@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Demo Dashboard</title>
     <style>
+      body { padding: 20px }
 
-      .containter-page {
+      .container-page {
         display: grid;
-        grid-template-columns: 1fr 200px;
-        grid-template-rows: 50px 1fr 1fr;
-        grid-template-areas: "Header StatusMQTT" "Main StatusBoard" "Main Webcam";
-        grid-gap: 10px;
+        grid-template-columns: auto 360px;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+          "Header StatusMQTT"
+          "Main StatusBoard"
+          "Main Webcam";
+        grid-gap: 20px;
+        width: 100%;
       }
 
       .box-header         { grid-area: Header }
@@ -28,32 +33,35 @@
       /* conditional */
 
       .status-mqtt-offline .if-mqtt-online,
-      .status-mqtt-online .if-mqtt-offline { display: none }
+      .status-mqtt-online .if-mqtt-offline,
+      .status-board01-online .if-board01-offline,
+      .status-board01-offline .if-board01-online { display: none }
 
       /* debug */
 
-      .dbg000 { border: 1px dotted red; padding: 10px; margin: 10px }
+      .dbg { outline: 1px dotted red; background: white; padding: 20px }
 
       /* dummy */
 
-      .status-red, .status-green { width: 20em }
-      .dummy-img { background: #eee; color: #666; line-height: 240px; width: 320px; text-align: center }
+      .status-red, .status-green { display: inline-block; width: 160px }
+      .dummy-img { outline: 1px dotted green; background: #cde; color: #666; line-height: 240px; width: 320px; text-align: center }
 
     </style>
   </head>
   <body>
 
-    <div class="container-page status-mqtt-offline">
+    <div class="container-page status-mqtt-offline status-board01-offline">
 
       <div class="dbg box-header">Blinking LED like a pro™</div>
 
       <div class="dbg box-status-mqtt">
+        Status
         <div class="if-mqtt-online status-green">MQTT Online</div>
         <div class="if-mqtt-offline status-red">MQTT Offline</div>
       </div>
 
       <div class="dbg box-main container-main">
-        <div class="dbg fixme-placeholder">
+        <div class="dbg fixme-placeholder" style="display: inline-block; background: #dfe">
           title<br>
           led status: on, off<br>
           health check (ping time)<br>
@@ -63,6 +71,7 @@
       </div>
 
       <div class="dbg box-status-board01">
+        Status
         <div class="if-board01-online status-green">Board01 Online</div>
         <div class="if-board01-offline status-red">Board01 Offline</div>
       </div>
