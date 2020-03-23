@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Demo Dashboard</title>
     <style>
-      .dbg { border: 1px dotted red }
+      /* decorative */
 
       .status-red { background: #fcc; color: #600 }
       .status-green { background: #cfc; color: #060 }
 
+      /* conditional */
+
       .status-mqtt-offline .if-mqtt-online,
       .status-mqtt-online .if-mqtt-offline { display: none }
 
+      /* debug */
+
+      .dbg { border: 1px dotted red; padding: 10px; margin: 10px }
+
+      /* dummy */
+
+      .status-red, .status-green { width: 20em }
+      .box-webcam { background: #eee; color: #666; line-height: 240px; width: 320px; text-align: center }
 
     </style>
   </head>
@@ -27,9 +37,9 @@
         <div class="if-mqtt-offline status-red">MQTT Offline</div>
       </div>
 
-      <div class="container-main">
+      <div class="dbg container-main">
 
-        <div class="fixme-placeholder">
+        <div class="dbg fixme-placeholder">
           title<br>
           led status: on, off<br>
           health check (ping time)<br>
@@ -39,7 +49,7 @@
 
       </div>
 
-      <div class="container-aside">
+      <div class="dbg container-aside">
 
         <div class="dbg box-board01-status">
           <div class="if-board01-online status-green">Board01 Online</div>
