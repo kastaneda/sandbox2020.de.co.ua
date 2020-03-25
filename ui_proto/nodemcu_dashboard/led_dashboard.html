@@ -6,6 +6,7 @@
     <title>Demo Dashboard</title>
     <style>
       body { padding: 20px }
+      body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif }
 
       @media (min-width: 800px) {
         .container-page {
@@ -41,12 +42,12 @@
 
       /* debug */
 
-      .dbg { outline: 1px dotted red; background: white; padding: 20px }
-      .dbg111 { padding: 20px }
+      .dbg111 { outline: 1px dotted red; background: white; padding: 20px }
+      .dbg { padding: 20px }
 
       /* dummy */
 
-      .status-red, .status-green { display: inline-block; width: 160px }
+      .status-red, .status-green { display: inline-block; border-radius: 4px; padding: 0 10px; width: 140px }
       .dummy-img { border-radius: 5px; background: #ccc; color: #666; line-height: 240px; width: 320px; text-align: center }
 
       /* my old good iPad 2 with non-upgradeable Safari 9 */
@@ -73,7 +74,7 @@
 
     <div class="container-page">
 
-      <div class="dbg box-header">Blinking LED like a pro™</div>
+      <div class="dbg box-header"><b>Blinking LED like a pro™</b></div>
 
       <div class="dbg box-status-mqtt">
         Status:
@@ -82,7 +83,7 @@
       </div>
 
       <div class="dbg box-main container-main">
-        <div class="dbg fixme-placeholder" style="display: inline-block; background: #eee">
+        <div class="fixme-placeholder" style="display: inline-block">
           title<br>
           led status: on, off<br>
           health check (ping time)<br>
