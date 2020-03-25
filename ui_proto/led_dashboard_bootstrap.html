@@ -7,24 +7,68 @@
     <title>Dashboard proto</title>
     <style>
 
-      .dbg { outline: 1px dotted red }
+      .status-mqtt-offline .if-mqtt-online,
+      .status-mqtt-online .if-mqtt-offline,
+      .status-board01-online .if-board01-offline,
+      .status-board01-offline .if-board01-online { display: none }
+
+      .dbg { outline: 1px dotted red; background: white; padding: 16px }
+      .dummy-img { background: #ccc; color: #666; line-height: 200px; width: 300px; text-align: center }
 
     </style>
   </head>
-  <body>
+  <body class="status-mqtt-offline status-board01-offline">
 
     <nav class="navbar navbar-dark bg-dark">
       <span class="navbar-brand mb-0 h1">
         Blinking LED like a pro™
       </span>
       <span class="navbar-text">
-        Status: MQTT Offline
+        Status:
+        <span class="badge badge-success if-mqtt-online status-green">MQTT Online</span>
+        <span class="badge badge-danger if-mqtt-offline status-red">MQTT Offline</span>
       </span>
     </nav>
 
+    <div class="container" style="margin-top: 1rem">
+      <div class="row">
+
+        <div class="col col-xl-8 col-lg-7 col-md-6">
+          <div class="dbg fixme-placeholder" style="display: inline-block; background: #eee">
+            title<br>
+            led status: on, off<br>
+            health check (ping time)<br>
+            control elements: on, off, toggle, blink N times, …<br>
+            mini-log: last N commands<br>
+            <br>
+            <form action="">
+              <div>
+                <input type="button" class="btn-key btn-mqtt-toggle" value="MQTT toggle" />
+                <input type="button" class="btn-key btn-board01-toggle" value="Board01 toggle" />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col col-xl-4 col-lg-5 col-md-6">
+          <div class="dbg box-status-board01">
+            Status:
+            <span class="badge badge-success if-board01-online status-green">Board01 Online</span>
+            <span class="badge badge-danger if-board01-offline status-red">Board01 Offline</span>
+          </div>
+          <div class="dbg box-webcam">
+            <div class="dummy-img">Webcam image</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="dashboard.js"></script>
+
   </body>
 </html>
