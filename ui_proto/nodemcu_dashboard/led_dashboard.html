@@ -42,11 +42,30 @@
       /* debug */
 
       .dbg { outline: 1px dotted red; background: white; padding: 20px }
+      .dbg111 { padding: 20px }
 
       /* dummy */
 
       .status-red, .status-green { display: inline-block; width: 160px }
       .dummy-img { border-radius: 5px; background: #ccc; color: #666; line-height: 240px; width: 320px; text-align: center }
+
+      /* my old good iPad 2 with non-upgradeable Safari 9 */
+
+      @supports not (display: grid) {
+        .box-header, .box-main,
+        .box-status-mqtt, .box-status-board01, .box-webcam { float: left }
+
+        @media (width: 768px) {
+          .dummy-img { line-height: 180px; width: 240px }
+          .box-status-mqtt, .box-status-board01, .box-webcam { width: 240px }
+          .box-header, .box-main { width: 390px }
+        }
+
+        @media (width: 1024px) {
+          .box-status-mqtt, .box-status-board01, .box-webcam { width: 320px }
+          .box-header, .box-main { width: 566px }
+        }
+      }
 
     </style>
   </head>
