@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Save my old good iPad 2</title>
+    <style>
+
+      .require-supports { display: block }
+      .require-grid { display: none }
+      .require-no-grid { display: none }
+
+      @supports not (display: grid) {
+        .require-supports { display: none }
+        .require-grid { display: none }
+        .require-no-grid { display: block }
+      }
+
+      @supports (display: grid) {
+        .require-supports { display: none }
+        .require-grid { display: block }
+        .require-no-grid { display: none }
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <h1>CSS { display: grid }</h1>
+
+    <h2 class="require-supports" style="color: red">Status: undefined</h2>
+    <h2 class="require-grid" style="color: green">Status: definitley supported</h2>
+    <h2 class="require-no-grid" style="color: maroon">Status: definitely not supported</h2>
+
+  </body>
+</html>
