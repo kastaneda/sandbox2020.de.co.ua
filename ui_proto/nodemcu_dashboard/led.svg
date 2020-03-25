@@ -232,15 +232,16 @@
          style="fill:none;stroke:#000000;stroke-width:0.90000004;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
          d="m 163.32214,231.50883 0,-0.3"
          id="path3554" />
-      <path
+      <!-- path
          style="fill:url(#linearGradient5414);fill-opacity:1;stroke:none"
          d="m 135.00422,228.78834 c -7.45704,-23.60008 -52.353915,-128.21101 10.95437,-128.21101 78.52445,0 15.36127,109.57071 10.27894,128.17646 -3.41668,9.45388 -18.37719,9.07364 -21.23331,0.0345 z"
          id="path3563"
-         sodipodi:nodetypes="cscs" />
+         sodipodi:nodetypes="cscs" / -->
       <path
-         style="fill:#fce94f;stroke:#000000;stroke-width:0.90000004;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:none;stroke:#000000;stroke-width:0.90000004;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
          d="m 156.19714,228.50883 c -0.715,7.98625 -19.73125,8.1325 -21.225,0.525 -0.39125,-8.68125 20.60375,-8.82125 21.225,-0.525"
          id="path3552" />
+      <!-- fill: #fce94f -->
       <path
          id="path3651"
          d="m 149.61392,231.01097 c -0.24633,2.59427 -6.79744,2.64179 -7.31204,0.17055 -0.13479,-2.82004 7.09801,-2.86551 7.31204,-0.17055"
