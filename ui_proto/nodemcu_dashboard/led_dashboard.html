@@ -14,7 +14,8 @@
           grid-template-columns: auto 360px;
           grid-template-rows: auto auto auto;
           grid-template-areas:
-            "Header StatusMQTT"
+            "Header Header"
+            "Main StatusMQTT"
             "Main StatusBoard"
             "Main Webcam";
           grid-gap: 20px;
@@ -30,6 +31,8 @@
 
       /* decorative */
 
+      .box { border-radius: 10px; background: #eee; padding: 20px }
+
       .status-red { background: #fcc; color: #600 }
       .status-green { background: #cfc; color: #060 }
 
@@ -40,11 +43,6 @@
       .status-board01-online .if-board01-offline,
       .status-board01-offline .if-board01-online { display: none }
 
-      /* debug */
-
-      .dbg111 { outline: 1px dotted red; background: white; padding: 20px }
-      .dbg { padding: 20px }
-
       /* dummy */
 
       .status-red, .status-green { display: inline-block; border-radius: 4px; padding: 0 10px; width: 140px }
@@ -53,18 +51,20 @@
       /* my old good iPad 2 with non-upgradeable Safari 9 */
 
       @supports not (display: grid) {
-        .box-header, .box-main,
-        .box-status-mqtt, .box-status-board01, .box-webcam { float: left }
-
-        @media (width: 768px) {
-          .dummy-img { line-height: 180px; width: 240px }
-          .box-status-mqtt, .box-status-board01, .box-webcam { width: 240px }
-          .box-header, .box-main { width: 390px }
-        }
+        body { padding: 0 }
+        .box { margin: 10px; float: left }
 
         @media (width: 1024px) {
           .box-status-mqtt, .box-status-board01, .box-webcam { width: 320px }
-          .box-header, .box-main { width: 566px }
+          .box-header { width: 940px }
+          .box-main { width: 560px }
+        }
+
+        @media (width: 768px) {
+          .box-status-mqtt, .box-status-board01, .box-webcam { width: 240px }
+          .box-header { width: 690px }
+          .box-main { width: 390px }
+          .dummy-img { line-height: 180px; width: 240px }
         }
       }
 
@@ -74,17 +74,11 @@
 
     <div class="container-page">
 
-      <div class="dbg box-header"><b>Blinking LED like a pro™</b></div>
+      <div class="box box-header"><b>Blinking LED like a pro™</b></div>
 
-      <div class="dbg box-status-mqtt">
-        Status:
-        <div class="if-mqtt-online status-green">MQTT Online</div>
-        <div class="if-mqtt-offline status-red">MQTT Offline</div>
-      </div>
-
-      <div class="dbg box-main container-main">
-        <div class="fixme-placeholder" style="display: inline-block">
-          <span style="display: inline-block; border: 1px solid #ccc; padding: 10px 40px; border-radius: 8px; float: left; margin: 0 10px 10px 0"><img src="led.svg" style="width: 75px; height: 135px" alt="Light-emitting diode"></span>
+      <div class="box box-main container-main">
+        <div class="fixme-placeholder" style="display: inline-block; padding: 10px; background: #ddd; border-radius:8px;">
+          <span style="display: inline-block; background: #fff; padding: 10px 40px; border-radius: 8px; float: left; margin: 0 10px 10px 0"><img src="led.svg" style="width: 75px; height: 135px" alt="Light-emitting diode"></span>
           title<br>
           led status: on, off<br>
           health check (ping time)<br>
@@ -102,13 +96,19 @@
         </div>
       </div>
 
-      <div class="dbg box-status-board01">
+      <div class="box box-status-mqtt">
+        Status:
+        <div class="if-mqtt-online status-green">MQTT Online</div>
+        <div class="if-mqtt-offline status-red">MQTT Offline</div>
+      </div>
+
+      <div class="box box-status-board01">
         Status:
         <div class="if-board01-online status-green">Board01 Online</div>
         <div class="if-board01-offline status-red">Board01 Offline</div>
       </div>
 
-      <div class="dbg box-webcam">
+      <div class="box box-webcam">
         <div class="dummy-img">Webcam image</div>
       </div>
 
