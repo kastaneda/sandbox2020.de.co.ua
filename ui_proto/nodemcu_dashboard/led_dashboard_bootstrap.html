@@ -12,8 +12,11 @@
       .status-board01-online .if-board01-offline,
       .status-board01-offline .if-board01-online { display: none }
 
-      .dbg { outline: 1px dotted red; background: white; padding: 16px }
       .dummy-img { border-radius: 5px; background: #ccc; color: #666; line-height: 240px; width: 320px; text-align: center }
+
+      @media (max-width: 768px) {
+        .dummy-img { line-height: 180px; width: 240px }
+      }
 
     </style>
   </head>
@@ -23,18 +26,14 @@
       <span class="navbar-brand mb-0 h1">
         Blinking LED like a pro™
       </span>
-      <span class="navbar-text">
-        Status:
-        <span class="badge badge-success if-mqtt-online status-green">MQTT Online</span>
-        <span class="badge badge-danger if-mqtt-offline status-red">MQTT Offline</span>
-      </span>
     </nav>
 
     <div class="container-fluid" style="margin-top: 1rem">
       <div class="row">
 
-        <div class="col col-xl-8 col-lg-7 col-md-6">
-          <div class="dbg fixme-placeholder" style="display: inline-block; background: #eee">
+        <div class="col col-xl-8 col-lg-7 col-md-6 col-sm-6">
+          <div class="fixme-placeholder" style="display: inline-block; background: #eee; padding: 10px; border-radius: 8px">
+            <span style="display: inline-block; background: #fff; padding: 10px 40px; border-radius: 8px; float: left; margin: 0 10px 10px 0"><img src="led.svg" style="width: 75px; height: 135px" alt="Light-emitting diode"></span>
             title<br>
             led status: on, off<br>
             health check (ping time)<br>
@@ -50,15 +49,34 @@
           </div>
         </div>
 
-        <div class="col col-xl-4 col-lg-5 col-md-6">
-          <p class="box-status-board01">
-            Status:
-            <span class="badge badge-success if-board01-online status-green">Board01 Online</span>
-            <span class="badge badge-danger if-board01-offline status-red">Board01 Offline</span>
-          </p>
-          <p class="box-webcam">
-            <div class="dummy-img">Webcam image</div>
-          </p>
+        <div class="col col-xl-4 col-lg-5 col-md-5 col-sm-5">
+
+          <div class="box-status-mqtt">
+            <div class="if-mqtt-online alert alert-info">
+              Status:
+              <span class="badge badge-success status-green">MQTT Online</span>
+            </div>
+            <div class="if-mqtt-offline alert alert-warning">
+              Status:
+              <span class="badge badge-danger status-red">MQTT Offline</span>
+            </div>
+          </div>
+
+          <div class="box-status-board01">
+            <div class="if-board01-online alert alert-info">
+              Status:
+              <span class="badge badge-success status-green">Board01 Online</span>
+            </div>
+            <div class="if-board01-offline alert alert-warning">
+              Status:
+              <span class="badge badge-danger status-red">Board01 Offline</span>
+            </div>
+          </div>
+
+          <div class="box-webcam">
+            <div class="dummy-img">Webcam offline</div>
+          </div>
+
         </div>
 
       </div>
