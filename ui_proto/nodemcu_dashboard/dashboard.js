@@ -15,7 +15,7 @@ window.addEventListener('load', function() {
   });
 
   document.addEventListener('keydown', function(e) {
-    key = event.keyCode? event.keyCode: event.which? event.which: null
+    key = event.keyCode? event.keyCode: event.which? event.which: null;
 
     // key 'M'
     if (key == 77 ) {
