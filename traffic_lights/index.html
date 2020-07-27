@@ -47,16 +47,15 @@
       <!-- Кнопки керування -->
       <p class="tl-dashboard">
         <button onclick="setPhase(0, 0, 0)">Вимкнено</button>
-        <button onclick="setPhase(1, 0, 0)">Червноий</button>
-        <button onclick="setPhase(1, 1, 0)">Червоний та жовтий</button>
-        <button onclick="setPhase(0, 1, 0)">Жовтий</button>
-        <button onclick="setPhase(0, 0, 1)">Зелений</button>
-        <!--
-        <br><br>
-        <button onclick="startStopToggle();">Пуск / Cтоп</button>
-        -->
+        <button onclick="loopStop(); setPhase(1, 0, 0)">Червноий</button>
+        <button onclick="loopStop(); setPhase(1, 1, 0)">Червоний та жовтий</button>
+        <button onclick="loopStop(); setPhase(0, 1, 0)">Жовтий</button>
+        <button onclick="loopStop(); setPhase(0, 0, 1)">Зелений</button>
       </p>
 
+      <p class="tl-dashboard">
+        <button onclick="loopStart();">Пуск</button>
+      </p>
     </div>
 
     <script>
@@ -68,6 +67,33 @@
         if (amber) { newClassName += ' mode-amber'; }
         if (green) { newClassName += ' mode-green'; }
         tl1.className = newClassName;
+      }
+
+      loopPhase = 0;
+
+      function loopPhaseHandler() {
+        var yellow = loopPhase;
+        loopPhase = 1 - loopPhase;
+        setPhase(0, yellow, 0);
+      }
+
+      loopStarted = false;
+      timerId = null;
+
+      function loopStart() {
+        if (!loopStarted) {
+          loopStarted = true;
+          timerId = setInterval(loopPhaseHandler, 1000);
+          console.log('timer started');
+        }
+      }
+
+      function loopStop() {
+        if (loopStarted) {
+          clearInterval(timerId);
+          loopStarted = false;
+          console.log('timer stopped');
+        }
       }
     </script>
 
