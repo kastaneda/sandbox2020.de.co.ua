@@ -6,7 +6,7 @@
     <title>Світлофор</title>
     <style>
 
-      .tl-block {
+      .tl-block__body {
         background: #000;
         width: 10em;
         padding: .5em;
@@ -18,16 +18,20 @@
         background: #333;
         width: 8em; height: 8em;
         border-radius: 4em;
+        transition: .25s;
       }
 
-      .tl-block.mode-red   .type-red   { background: #d03; }
-      .tl-block.mode-amber .type-amber { background: #c63; }
-      .tl-block.mode-green .type-green { background: #093; }
+      .tl-block.js-red   .type-red   { background: #d03; }
+      .tl-block.js-amber .type-amber { background: #c63; }
+      .tl-block.js-green .type-green { background: #093; }
 
-      .tl-dashboard { margin: 0 0 0 2em; }
-      .tl-dashboard button { margin: 1em; display: block; width: 12em; }
+      .ctrl-block__button {
+        display: block;
+        width: 12em;
+        margin: 1em 2em;
+      }
 
-      .page-main { display: flex }
+      .d-flex { display: flex; }
 
     </style>
   </head>
@@ -35,35 +39,37 @@
 
     <h1>Світлофор</h1>
 
-    <div class="page-main">
+    <div class="d-flex">
 
       <!-- Світлофор -->
       <div id="TrafficLights1" class="tl-block">
-        <div class="tl-block__light type-red"></div>
-        <div class="tl-block__light type-amber"></div>
-        <div class="tl-block__light type-green"></div>
+        <div class="tl-block__body">
+          <div class="tl-block__light type-red"></div>
+          <div class="tl-block__light type-amber"></div>
+          <div class="tl-block__light type-green"></div>
+        </div>
       </div>
 
       <!-- Кнопки керування -->
-      <p class="tl-dashboard">
-        <button onclick="setPhase(0, 0, 0)">Вимкнено</button>
-        <button onclick="loopStop(); setPhase(1, 0, 0)">Червноий</button>
-        <button onclick="loopStop(); setPhase(1, 1, 0)">Червоний та жовтий</button>
-        <button onclick="loopStop(); setPhase(0, 1, 0)">Жовтий</button>
-        <button onclick="loopStop(); setPhase(0, 0, 1)">Зелений</button>
+      <div class="ctrl-block">
+        <button class="ctrl-block__button" onclick="loopStop(); setLights(0, 0, 0);">Вимкнено</button>
+        <button class="ctrl-block__button" onclick="loopStop(); setLights(1, 0, 0);">Червноий</button>
+        <button class="ctrl-block__button" onclick="loopStop(); setLights(1, 1, 0);">Червоний та жовтий</button>
+        <button class="ctrl-block__button" onclick="loopStop(); setLights(0, 1, 0);">Жовтий</button>
+        <button class="ctrl-block__button" onclick="loopStop(); setLights(0, 0, 1);">Зелений</button>
         <br><br>
-        <button onclick="loopStart();">Пуск</button>
-      </p>
+        <button class="ctrl-block__button" onclick="loopStart();">Жовтий миготливий</button>
+      </div>
     </div>
 
     <script>
       tl1 = document.getElementById('TrafficLights1');
 
-      function setPhase(red, amber, green) {
+      function setLights(red, amber, green) {
         var newClassName = 'tl-block';
-        if (red)   { newClassName += ' mode-red'; }
-        if (amber) { newClassName += ' mode-amber'; }
-        if (green) { newClassName += ' mode-green'; }
+        if (red)   { newClassName += ' js-red'; }
+        if (amber) { newClassName += ' js-amber'; }
+        if (green) { newClassName += ' js-green'; }
         tl1.className = newClassName;
       }
 
@@ -72,7 +78,7 @@
       function loopPhaseHandler() {
         var yellow = loopPhase;
         loopPhase = 1 - loopPhase;
-        setPhase(0, yellow, 0);
+        setLights(0, yellow, 0);
       }
 
       loopStarted = false;
