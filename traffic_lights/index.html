@@ -58,7 +58,9 @@
         <button class="ctrl-block__button" onclick="loopStop(); setLights(0, 1, 0);">Жовтий</button>
         <button class="ctrl-block__button" onclick="loopStop(); setLights(0, 0, 1);">Зелений</button>
         <br><br>
-        <button class="ctrl-block__button" onclick="loopStart();">Жовтий миготливий</button>
+        <button class="ctrl-block__button" onclick="loopStart(seqBlinkingYellow);">Жовтий миготливий</button>
+        <button class="ctrl-block__button" onclick="loopStart(seqRedToGreen);">Червноий → зелений</button>
+        <button class="ctrl-block__button" onclick="loopStart(seqGreenToRed);">Зелений → червоний</button>
       </div>
     </div>
 
@@ -74,22 +76,59 @@
       }
 
       loopPhase = 0;
+      loopSequence = null;
 
       function loopPhaseHandler() {
-        var yellow = loopPhase;
-        loopPhase = 1 - loopPhase;
-        setLights(0, yellow, 0);
+        var step = loopSequence[loopPhase];
+        loopPhase = (loopPhase + 1) % loopSequence.length;
+        step();
       }
 
       loopStarted = false;
       timerId = null;
 
-      function loopStart() {
-        if (!loopStarted) {
-          loopStarted = true;
-          timerId = setInterval(loopPhaseHandler, 1000);
-          console.log('timer started');
+      seqBlinkingYellow = [
+        function() { setLights(0, 1, 0); },
+        function() { setLights(0, 0, 0); },
+      ];
+
+      seqRedToGreen = [
+        function() { setLights(1, 0, 0); },
+        function() {},
+        function() {},
+        function() {},
+        function() {},
+        function() { setLights(1, 1, 0); },
+        function() {},
+        function() {},
+        function() { setLights(0, 0, 1); loopStop(); },
+      ];
+
+      seqGreenToRed = [
+        function() { setLights(0, 0, 1); },
+        function() {},
+        function() {},
+        function() { setLights(0, 0, 0); },
+        function() { setLights(0, 0, 1); },
+        function() { setLights(0, 0, 0); },
+        function() { setLights(0, 0, 1); },
+        function() { setLights(0, 0, 0); },
+        function() { setLights(0, 0, 1); },
+        function() { setLights(0, 1, 0); },
+        function() {},
+        function() {},
+        function() { setLights(1, 0, 0); loopStop(); },
+      ];
+
+      function loopStart(sequence) {
+        if (loopStarted) {
+          loopStop();
         }
+        loopStarted = true;
+        loopPhase = 0;
+        loopSequence = sequence;
+        timerId = setInterval(loopPhaseHandler, 1000);
+        console.log('timer started');
       }
 
       function loopStop() {
