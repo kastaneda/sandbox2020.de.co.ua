@@ -62,6 +62,7 @@
         <button class="ctrl-block__button" onclick="loopStart(seqRedToGreen);">Червоний → зелений</button>
         <button class="ctrl-block__button" onclick="loopStart(seqGreenToRed);">Зелений → червоний</button>
       </div>
+
     </div>
 
     <script>
@@ -76,7 +77,7 @@
       }
 
       loopPhase = 0;
-      loopSequence = null;
+      loopSequence = [];
 
       function loopPhaseHandler() {
         var step = loopSequence[loopPhase];
@@ -87,38 +88,24 @@
       loopStarted = false;
       timerId = null;
 
-      seqBlinkingYellow = [
-        function() { setLights(0, 1, 0); },
-        function() { setLights(0, 0, 0); },
-      ];
+      function loopStop() {
+        if (loopStarted) {
+          clearInterval(timerId);
+          loopStarted = false;
+          console.log('timer stopped');
+        }
+      }
 
-      seqRedToGreen = [
-        function() { setLights(1, 0, 0); },
-        function() {},
-        function() {},
-        function() {},
-        function() {},
-        function() { setLights(1, 1, 0); },
-        function() {},
-        function() {},
-        function() { setLights(0, 0, 1); loopStop(); },
-      ];
+      nop = function () {};
+      s000 = function () { setLights(0, 0, 0); };
+      s100 = function () { setLights(1, 0, 0); };
+      s110 = function () { setLights(1, 1, 0); };
+      s010 = function () { setLights(0, 1, 0); };
+      s001 = function () { setLights(0, 0, 1); };
 
-      seqGreenToRed = [
-        function() { setLights(0, 0, 1); },
-        function() {},
-        function() {},
-        function() { setLights(0, 0, 0); },
-        function() { setLights(0, 0, 1); },
-        function() { setLights(0, 0, 0); },
-        function() { setLights(0, 0, 1); },
-        function() { setLights(0, 0, 0); },
-        function() { setLights(0, 0, 1); },
-        function() { setLights(0, 1, 0); },
-        function() {},
-        function() {},
-        function() { setLights(1, 0, 0); loopStop(); },
-      ];
+      seqBlinkingYellow = [ s010, s000 ];
+      seqRedToGreen = [ s100, nop, nop, nop, nop, s110, nop, nop, s001, loopStop ];
+      seqGreenToRed = [ s001, nop, nop, s000, s001, s000, s001, s000, s001, s010, nop, nop, s100, loopStop ];
 
       function loopStart(sequence) {
         if (loopStarted) {
@@ -129,14 +116,6 @@
         loopSequence = sequence;
         timerId = setInterval(loopPhaseHandler, 1000);
         console.log('timer started');
-      }
-
-      function loopStop() {
-        if (loopStarted) {
-          clearInterval(timerId);
-          loopStarted = false;
-          console.log('timer stopped');
-        }
       }
     </script>
 
