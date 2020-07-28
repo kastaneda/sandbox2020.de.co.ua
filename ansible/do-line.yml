@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - lineinfile:
+        path: /home/gray/dev/sandbox2020/ansible/ansible.cfg
+        regexp: '^#+\s*nocows'
+        firstmatch: yes
+        line: 'nocows = 1'
+
