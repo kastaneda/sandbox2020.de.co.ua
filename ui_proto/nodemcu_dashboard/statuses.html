@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard elements</title>
+    <style>
+      body { max-width: 50em; margin: 1em auto }
+      .box { margin: 1em 0; padding: 1em; border: thin solid }
+      .foo:before { content: "\2B24" }
+      .foo-red { color: #d03 }
+      .foo-green { color: #093 }
+      .bar { animation: 1.5s blink infinite }
+      @keyframes blink {
+        0% { opacity: .25 }
+        50% { opacity: 1 }
+        100% { opacity: .25 }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bar { animation: none }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" style="background: #afc">
+      <b>Page header</b>
+    </div>
+    <div class="box">
+      <b>Connection to MQTT Broker</b>
+      <div class="box">
+        <b>Status</b>
+        <div class="box">
+          <span class="foo foo-red"></span> Offline
+          <div class="box">
+            Too many connection attempts
+          </div>
+        </div>
+        <div class="box">
+          <span class="foo foo-red"></span> Offline,
+          <span class="bar">connecting…</span>
+        </div>
+        <div class="box">
+          <span class="foo foo-green"></span> Online
+        </div>
+      </div>
+      <div class="box">
+        <b>Controls</b>
+        <div class="box">
+          <button>Connect (try again)</button>
+          <button>Stop (connecting)</button>
+          <button>Disconnect</button>
+      </div>
+    </div>
+    <div class="box">
+      <b>Board01 Presence</b>
+      <div class="box">
+        <b>Status</b>
+        <div class="box">
+          <span class="foo foo-red"></span> Offline
+        </div>
+        <div class="box">
+          <span class="foo foo-green"></span> Online
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
