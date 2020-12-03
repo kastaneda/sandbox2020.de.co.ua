@@ -1,0 +1,11 @@
+https://developers.facebook.com/docs/sharing/webmasters
+https://developers.facebook.com/docs/sharing/webmasters/images
+
+ - The minimum allowed image dimension is 200x200 pixels.
+ - The size of the image file must not exceed 8 MB.
+ - Use images that are at least 1200x630 pixels for the best display
+   on high resolution devices. At the minimum, you should use images
+   that are 600x315 pixels to display link page posts with larger images.
+
+https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
+https://cards-dev.twitter.com/validator
