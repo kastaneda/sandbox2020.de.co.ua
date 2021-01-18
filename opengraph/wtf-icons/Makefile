@@ -6,3 +6,4 @@ all: $(ICONS)
 %.png: circle.svg
 	rsvg-convert $< -w $* -h $* -o $@
 	optipng $@
+	advpng -z -4 -i 50 $@
