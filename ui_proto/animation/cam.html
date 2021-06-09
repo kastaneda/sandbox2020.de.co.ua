@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webcam</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+      body, html { height: 100%; display: grid }
+      .webcam-container { margin: auto }
+
+      img { border: none; max-width: 100% }
+
+      .spinner-container {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        margin: -5rem 0 0 -5rem;
+      }
+
+      .spinner {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        border: 1rem solid;
+        border-color: #048a #0000;
+        animation: spinner-rotation 2.4s linear infinite;
+        visibility: hidden;
+      }
+
+      @keyframes spinner-rotation {
+        0% { transform: rotate(0deg) }
+        100% { transform: rotate(360deg) }
+      }
+
+      .loading .spinner { visibility: visible }
+    </style>
+  </head>
+  <body>
+    <div class="webcam-container">
+      <a href="#">
+        <img src="http://whatever.rico.home/webcam01/2021-06-06/18-50.jpg?" alt="Webcam">
+      </a>
+    </div>
+    <div class="spinner-container"><div class="spinner"></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(event) { 
+        var tag_body = document.querySelector('body');
+        var tag_a = document.querySelector('.webcam-container a');
+        var tag_img = document.querySelector('.webcam-container img');
+        var src_orig = tag_img.src;
+        var count = Date.now();
+
+        tag_img.addEventListener('load', function () {
+          tag_body.classList.remove('loading');
+        });
+
+        tag_a.addEventListener('click', function () {
+          return false;
+        });
+
+        tag_body.addEventListener('click', function (e) {
+          tag_body.classList.add('loading');
+          tag_img.src = src_orig + '&tmp=' + count++;
+          e.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>
