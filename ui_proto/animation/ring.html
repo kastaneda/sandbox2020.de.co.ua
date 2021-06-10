@@ -4,25 +4,13 @@
       <title>CSS playground</title>
       <meta name="viewport" content="initial-scale=1.0">
       <style>
-        .spinner-container {
-          position: fixed;
-          left: 50%;
-          top: 50%;
-          margin: -5rem 0 0 -5rem;
-        }
+        .spinner-container { position: fixed; left: 50%; top: 50%; margin: -5rem 0 0 -5rem }
+        @keyframes spinner-rotation { 100% { transform: rotate(360deg) } }
 
         .spinner {
-          width: 10rem;
-          height: 10rem;
-          border-radius: 50%;
-          border: 1rem solid;
-          border-color: #048a #0000;
-          animation: spinner-rotation 2.4s linear infinite;
-        }
-
-        @keyframes spinner-rotation {
-          0% { transform: rotate(0deg) }
-          100% { transform: rotate(360deg) }
+          width: 10rem; height: 10rem;
+          border: 1rem solid; border-color: #048a #0000; border-radius: 50%;
+          animation: spinner-rotation 1.75s linear infinite;
         }
       </style>
   </head>
