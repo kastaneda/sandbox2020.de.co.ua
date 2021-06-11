@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testing PhotoSwipe v5</title>
+    <style>
+      .sq300 {
+        display: block;
+        width: 300px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      img.horizontal {
+        position: absolute;
+        left: -50px;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pswp-gallery" id="gallery--simple">
+      <a href="../pswp4/img/012253.jpg"
+        data-pswp-src="../pswp4/img/012253.webp"
+        data-pswp-width="4032"
+        data-pswp-height="3024"
+        target="_blank" class="sq300">
+        <picture>
+          <source srcset="../pswp4/img/012253.300.webp" type="image/webp" />
+          <img src="../pswp4/img/012253.300.jpg" alt="Photo" class="horizontal" />
+        </picture>
+      </a>
+    </div>
+    <script type="module">
+      import PhotoSwipeLightbox from '/pswp5/photoswipe-dist/photoswipe-lightbox.esm.js';
+      const lightbox = new PhotoSwipeLightbox({
+        gallerySelector: '#gallery--simple',
+        childSelector: 'a',
+        pswpModule: '/pswp5/photoswipe-dist/photoswipe.esm.js',
+        pswpCSS: '/pswp5/photoswipe-dist/photoswipe.css'
+      });
+      lightbox.init();
+    </script>
+  </body>
+</html>

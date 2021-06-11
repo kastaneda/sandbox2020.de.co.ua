@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playing with PhotoSwipe v4</title>
+    <link rel="stylesheet" href="pswp/photoswipe.css"> 
+    <link rel="stylesheet" href="pswp/default-skin/default-skin.css"> 
+    <style>
+      .thumbnail { display: inline-block }
+      .thumbnail picture, .thumbnail img {
+        object-fit: cover;
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pswp-gallery" id="gallery--simple">
+      <a href="img/012253.jpg"
+        data-pswp-width="4032"
+        data-pswp-height="3024"
+        class="thumbnail" target="_blank">
+        <picture>
+          <source srcset="img/012253.300.webp" type="image/webp">
+          <img src="img/012253.300.jpg" alt="Photo">
+        </picture>
+      </a>
+      <a href="img/012801.jpg"
+        data-pswp-width="3024"
+        data-pswp-height="4032"
+        class="thumbnail" target="_blank">
+        <picture>
+          <source srcset="img/012801.300.webp" type="image/webp">
+          <img src="img/012801.300.jpg" alt="Photo">
+        </picture>
+      </a>
+      <a href="img/013137.jpg"
+        data-pswp-width="3024"
+        data-pswp-height="4032"
+        class="thumbnail" target="_blank">
+        <picture>
+          <source srcset="img/013137.300.webp" type="image/webp">
+          <img src="img/013137.300.jpg" alt="Photo">
+        </picture>
+      </a>
+    </div>
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+            <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+            <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div> 
+          </div>
+          <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+          </button>
+          <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+          </button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="pswp/photoswipe.min.js"></script> 
+    <script src="pswp/photoswipe-ui-default.min.js"></script> 
+    <script>
+      window.addEventListener('load', function() {
+        var initPswp = function() {
+          var slides = [];
+          var slideCount = 0;
+          var pswpElement = document.querySelector('.pswp');
+          var pswpOptions = {
+            showHideOpacity: true,
+            getThumbBoundsFn: function (idx) {
+              var pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+              var rect = slides[idx].el.getBoundingClientRect();
+              console.log(rect);
+              var imgEl = slides[idx].el.querySelector('img');
+              var dx = (imgEl.naturalWidth - imgEl.width) / 2;
+              var dy = (imgEl.naturalHeight - imgEl.height) / 2;
+              return { x: rect.left - dx, y: rect.top + pageYScroll - dy, w: imgEl.naturalWidth };
+            }
+          };
+          
+          var onSlideClick = function (e) {
+            e = e || window.event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            var el = e.target || e.srcElement;
+            while (el.tagName.toUpperCase() != 'A') el = el.parentNode;
+            var opt = pswpOptions;
+            opt.index = parseInt(el.dataset.index);
+            var pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, slides, opt);
+            pswp.init();
+          };
+          
+          document.querySelectorAll('a.thumbnail').forEach(function (el) {
+            slides.push({
+              el: el,
+              src: el.href,
+              msrc: el.dataset.msrc || el.querySelector('img').src,
+              w: el.dataset.pswpWidth,
+              h: el.dataset.pswpHeight
+            });
+            el.dataset.index = slideCount++;
+            el.addEventListener('click', onSlideClick);
+          });
+        };
+  
+        var tryWebp = new Image();
+        tryWebp.onload = function () {
+          if ((tryWebp.width > 0) && (tryWebp.height > 0)) {
+            document.querySelectorAll('a.thumbnail').forEach(function (el) {
+              el.href = el.href.replace(/jpg$/, 'webp');
+              el.dataset.msrc = el.querySelector('source').srcset;
+            });
+          }
+          initPswp();
+        };
+
+        tryWebp.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+      });
+    </script>
+  </body>
+</html>
