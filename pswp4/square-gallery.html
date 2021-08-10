@@ -93,11 +93,12 @@
             getThumbBoundsFn: function (idx) {
               var pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
               var rect = slides[idx].el.getBoundingClientRect();
-              console.log(rect);
-              var imgEl = slides[idx].el.querySelector('img');
-              var dx = (imgEl.naturalWidth - imgEl.width) / 2;
-              var dy = (imgEl.naturalHeight - imgEl.height) / 2;
-              return { x: rect.left - dx, y: rect.top + pageYScroll - dy, w: imgEl.naturalWidth };
+              var i = slides[idx].el.querySelector('img');
+              return {
+                x: rect.left - (i.naturalWidth - i.width) / 2,
+                y: rect.top + pageYScroll - (i.naturalHeight - i.height) / 2,
+                w: i.naturalWidth
+              };
             }
           };
           
@@ -105,7 +106,7 @@
             e = e || window.event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
             var el = e.target || e.srcElement;
-            while (el.tagName.toUpperCase() != 'A') el = el.parentNode;
+            while (el.parentNode && el.tagName.toUpperCase() != 'A') el = el.parentNode;
             var opt = pswpOptions;
             opt.index = parseInt(el.dataset.index);
             var pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, slides, opt);
