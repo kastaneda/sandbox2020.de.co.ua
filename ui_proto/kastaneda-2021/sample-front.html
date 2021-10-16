@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <title>kastaneda.kiev.ua // прототип титульної сторінки</title>
+    <style>
+      body { max-width: 50em; margin: auto; padding: 1em }
+
+      .photo-placeholder { width: 300px; height: 400px; background: #ccc }
+
+      .flatlinks * { display: inline-block; margin: 0; padding: 0 }
+      .flatlinks li+li:before { content: " / " }
+      .flatlinks li:last-child:after { content: "." }
+
+      @media (min-width: 40em)  {
+        .intro { display: flex; gap: 20px }
+        .intro__text *:first-child { margin-top: 0 }
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Тут має бути якийсь [прикольний?] заголовок</h1>
+    
+    <div class="intro">
+      <div class="intro__photo">
+        <div class="photo-placeholder"></div>
+      </div>
+      <div class="intro__text">
+        <p>Всім привіт.</p>
+        <p>Мене звати Дмитро Колесников, а це — мій персональний сайт. Я тут пишу шо попало, а іноді навіть шопопалєво.</p>
+        <p>
+          Пишу нотатки
+          <a href="#FIXME">про своє життя</a>,
+          якісь <a href="#FIXME">роздуми</a>,
+          матюки <a href="#FIXME">про політику</a>,
+          іноді щось <a href="#FIXME">про веб-розробку</a>,
+          <a href="#FIXME">про вільний софт</a>
+          та навіть <a href="#FIXME">про криптографію</a>.
+        </p>
+        <div class="flatlinks">
+          <p>Я у соцмережах:</p>
+          <ul>
+            <li><a href="https://twitter.com/kastaneda">Twitter</a></li>
+            <li><a href="https://github.com/kastaneda">GitHub</a></li>
+            <li><a href="https://kastaneda.dreamwidth.org/">Dreamwidth</a></li>
+            <li><a href="https://www.linkedin.com/in/dk487/">LinkedIn</a></li>
+          </ul>
+        </div>
+        <p>* * *</p>
+        <p>Сайт містить матюки. Типу, <span lang="en">explicit lyrics</span>. Ну, я попередив.</p>
+      </div>
+    </div>
+
+    <h1>Блоґ</h1>
+    <ul>
+      <li><a href="#FIXME">41</a></li>
+      <li><a href="#FIXME">Про криптографію</a></li>
+      <li><a href="#FIXME">Про цензуру</a></li>
+      <li><a href="#FIXME" lang="en">The end of Chromium</a></li>
+      <li><a href="#FIXME">Мова</a></li>
+      <li><a href="#FIXME">Сама довга ніч, сама темна ніч</a></li>
+      <li><a href="#FIXME">40</a></li>
+      <li><a href="#FIXME" lang="ru">Asus, что за фигня?</a></li>
+      <li><a href="#FIXME" lang="ru">Web умирает</a></li>
+      <li><a href="#FIXME" lang="en">Next big goals</a></li>
+      <li><a href="#FIXME" lang="ru">Привет, Dreamwidth!</a></li>
+      <li><a href="#FIXME" lang="en">RSS feed</a></li>
+      <li><a href="#FIXME" lang="ru">Миграция на Jekyll</a></li>
+      <li><a href="#FIXME">38</a></li>
+      <li><a href="#FIXME">37</a></li>
+      <li><a href="#FIXME" lang="ru">Ещё раз про цензуру</a></li>
+      <li><a href="#FIXME" lang="ru">Про цензуру и про людей</a></li>
+      <li><a href="#FIXME" lang="ru">Служба Брелков и софт</a></li>
+      <li><a href="#FIXME" lang="en">Farewell</a></li>
+      <li><a href="#FIXME" lang="ru">Про ЖЖ и новый TOS</a></li>
+      <li><a href="#FIXME" lang="ru">Про кино, про людей и нелюдей</a></li>
+    </ul>
+
+
+  </body>
+</html>
