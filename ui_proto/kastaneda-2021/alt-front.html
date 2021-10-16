@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="uk">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>kastaneda.kiev.ua // альтернативний прототип титульної сторінки</title>
     <style>
       body { max-width: 50em; margin: auto; padding: 1em }
@@ -9,9 +10,18 @@
       .blogpost + .blogpost:before { content: ''; display: block; width: 62%; margin: 3em auto 2.5em auto; border-top: thin dotted }
       .blogpost h1 { font-size: 140%; font-weight: normal; margin: 0 }
       .blogpost__in { font-size: 80% }
+      
+      .blogpost__date { font-style: italic }
+      .blogpost__date .opt { color: #666 }
+      .blogpost__tags a { color: inherit }
+      .blogpost__comments { display: none }
 
-      @media (min-width: 35em) {
-        .blogpost__in { display: grid; grid-template: auto / 3fr 2fr 4em }
+      @media (max-width: 32em) {
+        .blogpost__date .opt { display: none }
+      }
+
+      @media (min-width: 24em) {
+        .blogpost__in { display: grid; grid-template: auto / 1fr 1fr }
       }
     </style>
   </head>
@@ -20,79 +30,85 @@
     <main>
 
       <article class="blogpost">
-        <div class="blogpost__in">
-          <p class="blogpost__date">Понеділок, 6 вересня 2021 року, 10:19.</p>
-          <p class="blogpost__tags">
-            <a href="#FIXME">#mine</a>
-          </p>
-          <p class="blogpost__comments">💬️ 0</p>
-        </div>
-
         <h1><a href="#FIXME">41</a></h1>
+
+        <div class="blogpost__in">
+          <p class="blogpost__date"><span class="opt">Понеділок, </span>6 вересня 2021<span class="opt"> року</span>, 10:19.</p>
+          <p class="blogpost__tags">
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">mine</span></a>
+          </p>
+          <p class="blogpost__comments"><a href="#FIXME">💬️ 0</a></p>
+        </div>
       </article>
 
       <article class="blogpost">
-        <div class="blogpost__in">
-          <p class="blogpost__date">Субота, 4 вересня 2021 року, 16:17.</p>
-          <p class="blogpost__tags">
-            <a href="#FIXME">#crypto</a>
-            <a href="#FIXME">#politics</a>
-          </p>
-          <p class="blogpost__comments">💬️ 0</p>
-        </div>
-
         <h1><a href="#FIXME">Про криптографію</a></h1>
-        <p>Існують люди, що добре знаються на криптографії. Цей пост не для них.</p>
-        <p>Взагалі-то я не знаю, для кого цей пост: експерти і так все знають, а чайників цей короткий текст нічому суттєвому не навчить. Схоже, цей текст я пишу лише для себе, бо деякі слова бажають бути написані.</p>
 
-        <p><a href="">Читати далі… (443 слова)</a></p>
+        <div class="blogpost__in">
+          <p class="blogpost__date"><span class="opt">Субота, </span>4 вересня 2021<span class="opt"> року</span>, 16:17.</p>
+          <p class="blogpost__tags">
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">crypto</span></a>
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">politics</span></a>
+          </p>
+          <p class="blogpost__comments"><a href="#FIXME">💬️ 0</a></p>
+        </div>
+
+        <p>
+          Існують люди, що добре знаються на криптографії. Цей пост не для них.
+        </p>
+        <p>
+          Взагалі-то я не знаю, для кого цей пост: експерти і так все знають, а чайників цей короткий текст нічому суттєвому не навчить. Схоже, цей текст я пишу лише для себе, бо деякі слова бажають бути написані.
+          <a href="#FIXME" class="blogpost__readmore">Читати далі… (443 слова)</a>
+        </p>
+
+        <p></p>
       </article>
 
       <article class="blogpost">
-        <div class="blogpost__in">
-          <p class="blogpost__date">П'ятниця, 9 липня 2021 року, 20:32:37.</p>
-          <p class="blogpost__tags">
-            <a href="#FIXME">#censorship</a>
-            <a href="#FIXME">#politics</a>
-          </p>
-          <p class="blogpost__comments">💬️ 0</p>
-        </div>
-
         <h1><a href="#FIXME">Про цензуру</a></h1>
-        <p>Вчора я прочитав надзвичайно бентежний пост Макса Тульева про рішення РНБО створити центральний реєстр заборонених сайтів (пост, копія). Я деякий час обмірковував все це, а ще спостерігав.</p>
-
-        <p class="blogpost__readmore"><a href="">Читати далі… (761 слово)</a></p>
+        <div class="blogpost__in">
+          <p class="blogpost__date"><span class="opt">П'ятниця, </span>9 липня 2021<span class="opt"> року</span>, 20:32.</p>
+          <p class="blogpost__tags">
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">censorship</span></a>
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">politics</span></a>
+          </p>
+          <p class="blogpost__comments"><a href="#FIXME">💬️ 0</a></p>
+        </div>
+        <p>
+          Вчора я прочитав надзвичайно бентежний пост Макса Тульева про рішення РНБО створити центральний реєстр заборонених сайтів (пост, копія). Я деякий час обмірковував все це, а ще спостерігав.
+          <a href="#FIXME" class="blogpost__readmore">Читати далі… (761 слово)</a>
+        </p>
       </article>
 
       <article class="blogpost">
-        <div class="blogpost__in">
-          <p class="blogpost__date">Четвер, 18 лютого 2021 року, 07:07.</p>
-          <p class="blogpost__tags">
-            <a href="#FIXME">#web</a>
-          </p>
-          <p class="blogpost__comments">💬️ 0</p>
-        </div>
-
         <h1><a href="#FIXME" lang="en">The end of Chromium</a></h1>
-        <p>Я багато років користувався Chrome та Chromium на всіх своїх ноутбуках та смартфонах. Причому на ноутбуках використовую виключно Chromium, а не Chrome. Різницю між Chromium та Chrome я знаю добре, і використання Chrome для мене є неприпустимим.</p>
-
-        <p class="blogpost__readmore"><a href="">Читати далі… (424 слова)</a></p>
+        <div class="blogpost__in">
+          <p class="blogpost__date"><span class="opt">Четвер, </span>18 лютого 2021<span class="opt"> року</span>, 07:07.</p>
+          <p class="blogpost__tags">
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">web</span></a>
+          </p>
+          <p class="blogpost__comments"><a href="#FIXME">💬️ 0</a></p>
+        </div>
+        <p>
+          Я багато років користувався Chrome та Chromium на всіх своїх ноутбуках та смартфонах. Причому на ноутбуках використовую виключно Chromium, а не Chrome. Різницю між Chromium та Chrome я знаю добре, і використання Chrome для мене є неприпустимим.
+          <a href="#FIXME" class="blogpost__readmore">Читати далі… (424 слова)</a>
+        </p>
       </article>
 
       <article class="blogpost">
-        <div class="blogpost__in">
-          <p class="blogpost__date">Середа, 23 грудня 2020 року, 09:10.</p>
-          <p class="blogpost__tags">
-            <a href="#FIXME">#mine</a>
-            <a href="#FIXME">#web</a>
-          </p>
-          <p class="blogpost__comments">💬️ 0</p>
-        </div>
-
         <h1><a href="#FIXME">Мова</a></h1>
-        <p>Всім привіт. Я вирішив, що писатиму у свій блоґ українською.</p>
-
-        <p class="blogpost__readmore"><a href="">Читати далі… (87 слів)</a></p>
+        <div class="blogpost__in">
+          <p class="blogpost__date"><span class="opt">Середа, </span>23 грудня 2020<span class="opt"> року</span>, 09:10.</p>
+          <p class="blogpost__tags">
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">mine</span></a>
+            <a href="#FIXME"><span title="Теґ">#</span><span lang="en">web</span></a>
+          </p>
+          <p class="blogpost__comments"><a href="#FIXME">💬️ 0</a></p>
+        </div>
+        <p>
+          Всім привіт. Я вирішив, що писатиму у свій блоґ українською.
+          <a href="#FIXME" class="blogpost__readmore">Читати далі… (87 слів)</a>
+        </p>
       </article>
 
     </main>
