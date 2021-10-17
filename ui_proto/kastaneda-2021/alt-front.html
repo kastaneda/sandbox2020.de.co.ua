@@ -5,14 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>kastaneda.kiev.ua // альтернативний прототип титульної сторінки</title>
     <style>
+      html { font-family: IBM Plex Serif, serif; font-size: 20px; line-height: 28px }
+
+      html { color: #000; background: #fff }
+      a { color: #129 }
+      a:active { color: #fa5 }
+      a:focus { outline: medium solid; outline-offset: 3px; background: #cef }
+      a:visited { color: #624 }
+      a:visited:focus { outline: medium solid; background: #fed }
+      .blogpost__tags a:focus { outline: medium dotted; background: inherit }
+      @media (prefers-color-scheme: dark) {
+        html { color: #ddd; background: #000 }
+        a { color: #37c }
+        a:visited { color: #a6d }
+        a:focus { background: #124 }
+        a:visited:focus { background: #305 }
+      }
+
       body { max-width: 50em; margin: auto; padding: 1em }
 
-      .blogpost { margin: 2em 0 }
-      .blogpost + .blogpost:before { content: ''; display: block; width: 62%; margin: -1px auto 2em auto; border-top: 1px dashed }
+      section { margin: 3em 0 }
+      section:first-child { margin-top: 1em }
+      section:last-child { margin-bottom: 1em }
+      /* section + section:before { content: ''; display: block; width: 38%; margin: -1px auto 2em auto; border-top: 1px dashed } */
+      h2 { font-size: 160%; line-height: 1.2em; font-weight: normal; margin: 0 }
+      h2 a { text-decoration-thickness: 0.075em }
 
-      .blogpost h1 { font-size: 200%; font-weight: normal; margin: 0 }
       .blogpost__tags { display: none }
-      .blogpost__tags a { color: inherit }
+      .blogpost__tags a { color: inherit; text-decoration-style: dotted }
       .blogpost__date, .blogpost__readmore { font-style: italic }
 
       @media (min-width: 21em) {
@@ -23,58 +43,58 @@
       @media (max-width: 32em) {
         .blogpost__date .opt { display: none }
       }
-
     </style>
   </head>
   <body>
 
     <section class="blogpost">
+      <h2><a href="#FIXMEasdfasdf">41</a></h2>
       <p class="blogpost__in">
-        <span class="blogpost__date"><span class="opt">Понеділок, </span>6 вересня 2021<span class="opt"> року</span>, 10:19.</span>
+        <span class="blogpost__date"><span class="opt">Понеділок, </span>6 вересня<span class="opt"> 2021 року</span>, 10:19.</span>
         <span class="blogpost__tags">
           <span title="Теґ">#</span><a href="#FIXME">моє життя</a>
         </span>
       </p>
-      <h1><a href="#FIXME">41</a></h1>
     </section>
 
     <section class="blogpost">
+      <h2><a href="#FIXMEqwert">Про криптографію</a></h2>
       <p class="blogpost__in">
-        <span class="blogpost__date"><span class="opt">Субота, </span>4 вересня 2021<span class="opt"> року</span>, 16:17.</span>
+        <span class="blogpost__date"><span class="opt">Субота, </span>4 вересня<span class="opt"> 2021 року</span>, 16:17.</span>
         <span class="blogpost__tags">
           <span title="Теґ">#</span><a href="#FIXME">криптографія</a>
           <span title="Теґ">#</span><a href="#FIXME">політика</a>
         </span>
       </p>
-      <h1><a href="#FIXME">Про криптографію</a></h1>
       <p>Існують люди, що добре знаються на криптографії. Цей пост не для них.</p>
-      <p>Взагалі-то я не знаю, для кого цей пост: експерти і так все знають, а чайників цей короткий текст нічому суттєвому не навчить. Схоже, цей текст я пишу лише для себе, бо деякі слова бажають бути написані. <a href="#FIXME" class="blogpost__readmore">Читати далі… (443 слова)</a></p>
+      <p>Взагалі-то я не знаю, для кого цей пост: експерти і так все знають, а чайників цей короткий текст нічому суттєвому не навчить. Схоже, цей текст я пишу лише для себе, бо деякі слова бажають бути написані. <a href="#FIXMEqwert" class="blogpost__readmore">Читати далі… (443 слова)</a></p>
     </section>
 
     <section class="blogpost">
+      <h2><a href="#FIXME">Про цензуру</a></h2>
       <p class="blogpost__in">
-        <span class="blogpost__date"><span class="opt">П'ятниця, </span>9 липня 2021<span class="opt"> року</span>, 20:32.</span>
+        <span class="blogpost__date"><span class="opt">П'ятниця, </span>9 липня<span class="opt"> 2021 року</span>, 20:32.</span>
         <span class="blogpost__tags">
           <span title="Теґ">#</span><a href="#FIXME">веб</a>
           <span title="Теґ">#</span><a href="#FIXME">політика</a>
         </span>
       </p>
-      <h1><a href="#FIXME">Про цензуру</a></h1>
-      <p>Вчора я прочитав надзвичайно бентежний пост Макса Тульева про рішення РНБО створити центральний реєстр заборонених сайтів (<a href="#FIXME">пост</a>, <a href="#FIXME">копія</a>). Я деякий час обмірковував все це, а ще спостерігав. <a href="#FIXME" class="blogpost__readmore">Читати далі… (761 слово)</a></p>
+      <p>Вчора я прочитав надзвичайно бентежний пост Макса Тульева про рішення РНБО створити центральний реєстр заборонених сайтів (<a href="https://www.facebook.com/mt6561/posts/4321573754572469">пост</a>, <a href="#FIXME">копія</a>). Я деякий час обмірковував все це, а ще спостерігав. <a href="#FIXME" class="blogpost__readmore">Читати далі… (761 слово)</a></p>
     </section>
 
     <section class="blogpost">
+      <h2><a href="#FIXME" lang="en">The end of Chromium</a></h2>
       <p class="blogpost__in">
-        <span class="blogpost__date"><span class="opt">Четвер, </span>18 лютого 2021<span class="opt"> року</span>, 07:07.</span>
+        <span class="blogpost__date"><span class="opt">Четвер, </span>18 лютого<span class="opt"> 2021 року</span>, 07:07.</span>
         <span class="blogpost__tags">
           <span title="Теґ">#</span><a href="#FIXME">веб</a>
         </span>
       </p>
-      <h1><a href="#FIXME" lang="en">The end of Chromium</a></h1>
       <p>Я багато років користувався Chrome та Chromium на всіх своїх ноутбуках та смартфонах. Причому на ноутбуках використовую виключно Chromium, а не Chrome. Різницю між Chromium та Chrome я знаю добре, і використання Chrome для мене є неприпустимим. <a href="#FIXME" class="blogpost__readmore">Читати далі… (424 слова)</a></p>
     </section>
 
     <section class="blogpost">
+      <h2><a href="#FIXME">Мова</a></h2>
       <p class="blogpost__in">
         <span class="blogpost__date"><span class="opt">Середа, </span>23 грудня 2020<span class="opt"> року</span>, 09:10.</span>
         <span class="blogpost__tags">
@@ -82,7 +102,6 @@
           <span title="Теґ">#</span><a href="#FIXME">веб</a>
         </span>
       </p>
-      <h1><a href="#FIXME">Мова</a></h1>
       <p>Всім привіт. Я вирішив, що писатиму у свій блоґ українською. <a href="#FIXME" class="blogpost__readmore">Читати далі… (87 слів)</a></p>
     </section>
 
