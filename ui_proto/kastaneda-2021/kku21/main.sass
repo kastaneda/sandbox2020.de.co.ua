@@ -1,0 +1,229 @@
+---
+---
+
+////////////////////////////////////////////////////////////////////////
+// Helper styles: demo page with snippets
+
+.demo
+  font-family: 'Droid Sans Mono', monospace
+  font-weight: normal
+  color: #666
+
+.snippet-box
+  display: grid
+  grid-template-columns: 1fr
+  gap: 1em
+
+@media (min-width: 30em)
+  .snippet-box
+    grid-template-columns: 1fr 1fr
+
+@mixin shadow
+  box-shadow: 0 2px 8px #999
+
+.snippet
+  @include shadow
+  padding: 1em
+
+.layout-box
+  display: flex
+  gap: 1em
+
+.layout
+  @include shadow
+  width: 20rem
+  height: 30rem
+  overflow: auto
+
+////////////////////////////////////////////////////////////////////////
+// Snippets itself
+
+// Basic fonts and colors
+
+.snippet__body
+  font-family: 'IBM Plex Serif', 'Georgia', 'URW Bookman L', Times, serif
+  font-size: 120%
+  line-height: 150%
+
+.snippet__body-light
+  color: #130
+  background: #ffe
+
+.snippet__body-dark
+  color: #d9dac3
+  background: #0a1311
+
+// Headers
+
+.snippet__site-title
+  font-family: 'Snell Roundhand', 'Zapf Calligraphic', 'Z003', cursive, fantasy, serif
+  font-size: 165%
+  font-weight: normal
+  font-style: italic
+  line-height: 150%
+  color: #666
+
+.snippet__index-post-header
+  font-family: 'IBM Plex Serif', 'Georgia', 'URW Bookman L', Times, serif
+  font-weight: normal
+  font-size: 180%
+  line-height: 120%
+
+.snippet__single-post-header
+  font-family: 'IBM Plex Serif', 'Georgia', 'URW Bookman L', Times, serif
+  font-weight: normal
+  font-size: 220%
+  line-height: 130%
+  .snippet__body-light &
+    color: #163
+  .snippet__body-dark &
+    color: #ae9
+
+// Links
+
+@mixin link
+  text-decoration: underline
+
+@mixin link-focused
+  @include link
+  outline: medium solid
+  outline-offset: 0.15rem
+
+@mixin link-definitions($link-color, $link-bg, $visited-color, $visited-bg, $active-color, $active-bg)
+  .snippet__link
+    @include link
+    color: $link-color
+
+  .snippet__link-focused
+    @include link-focused
+    color: $link-color
+    background: $link-bg
+
+  .snippet__link-visited
+    @include link
+    color: $visited-color
+
+  .snippet__link-visited-focused
+    @include link-focused
+    color: $visited-color
+    background: $visited-bg
+
+  .snippet__link-active
+    @include link-focused
+    color: $active-color
+    background: $active-bg
+    outline-color: $active-bg
+    text-decoration: none
+
+.snippet__body-light
+  @include link-definitions(#129, #cef, #624, #fed, #df9, #000)
+
+.snippet__body-dark
+  @include link-definitions(#37c, #124, #a6d, #305, #000, #ce6)
+
+// Special links
+
+@mixin link-nav
+  @include link
+  text-decoration-style: dotted
+
+.snippet__link-nav
+  @include link-nav
+
+.snippet__link-nav-focused
+  @include link-focused
+  @include link-nav
+  outline: medium dotted
+
+// Blogpost date
+
+.snippet__blogpost-date,
+.snippet__blogpost-date-narrow
+  color: #386
+  font-style: italic
+
+.snippet__blogpost-date-narrow
+  .opt
+    display: none
+
+// Footers
+
+.snippet__single-post-footer
+  color: #666
+
+////////////////////////////////////////////////////////////////////////
+// Layout demo
+
+.demo-layout
+  font-family: 'IBM Plex Serif', 'Georgia', 'URW Bookman L', Times, serif
+  font-size: 65%
+  padding: 1em
+  color: #130
+  background: #ffe
+
+.demo__site-header
+  font-family: 'Snell Roundhand', 'Zapf Calligraphic', 'Z003', cursive, fantasy, serif
+  font-style: italic
+  font-size: 120%
+  text-align: center
+  border-bottom: thin solid
+  color: #666
+
+.demo__post
+  margin: 2em 0
+
+.demo__post-header
+  font-size: 150%
+  color: #129
+  text-decoration: underline
+
+.demo__single-post-header
+  font-weight: normal
+  font-size: 220%
+  line-height: 130%
+  color: #163
+  margin: .5em 0 0 0
+
+.demo__post-date
+  font-style: italic
+  margin: .25em 0 .5em 0
+  color: #386
+
+.demo__link
+  color: #129
+  text-decoration: underline
+
+.demo__read-more
+  font-style: italic
+  color: #129
+  text-decoration: underline
+
+.demo__footer
+  border-top: thin solid
+  color: #666
+  font-size: 80%
+
+.demo__footer-link
+  text-decoration: underline
+  text-decoration-style: dotted
+
+// .demo__site-header, .demo__post, .demo__footer
+//  background: yellow
+
+.demo-layout h2
+  font-size: 150%
+  font-weight: normal
+
+.demo-layout h3
+  font-size: 120%
+  font-weight: normal
+
+.demo-layout blockquote
+  border-left: thin solid
+  padding: 0 0 0 1em
+  margin: 1em 0
+  font-style: italic
+
+.demo-layout a
+  color: #129
+  text-decoration: underline
