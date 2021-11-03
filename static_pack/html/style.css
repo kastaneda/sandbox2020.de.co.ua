@@ -1,0 +1,7 @@
+ html, body { height: 100%; margin: 0 }
+ body { display: grid; place-items: center }
+
+h1 {
+    font: 800% / 150% cursive, fantasy;
+    color: green;
+}
