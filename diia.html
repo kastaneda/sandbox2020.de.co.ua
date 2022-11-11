@@ -1,0 +1,26 @@
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { display: grid; place-items: center; overflow: clip }
+
+  .gradient {
+    filter: blur(5px);
+    left: -50px; top: -50px; bottom: -50px; right: -50px;
+    content: ""; display: block;
+    position: absolute; z-index: -1;
+    background-image: linear-gradient(217deg, #f00c, #f000 50.71%),
+                      linear-gradient(127deg, #0f0c, #0f00 70.71%),
+                      linear-gradient(336deg, #00fc, #00f0 70.71%);
+    background-size: 150vw 150vh;
+  }
+
+  h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    font-size: 420%;
+  }
+</style>
+
+<div class="gradient"></div>
+<h1>Негайно заборонити!</h1>
