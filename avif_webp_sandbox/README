@@ -1,0 +1,4 @@
+https://twitter.com/SilentImp/status/1496099793571098632
+npx avif --input="./webkit-ru.png" --output="." --speed=0 --quality=30
+
+
