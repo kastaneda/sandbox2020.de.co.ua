@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <style>
+
+:root {
+  --brick-width: 9em;
+  --brick-height: 6em;
+  --gutter: .5em;
+}
+
+body {
+  background: white;
+  color: black;
+  padding: .5em;                    /* var(--gutter) */
+}
+
+.tile-container {
+  margin: -.5em;                    /* -var(--gutter) */
+}
+
+.tile {
+  display: inline-block;
+  width: 8em;                       /* var(--brick-width) - 2*var(--gutter) */
+  height: 5em;                      /* var(--brick-height) - 2*var(--gutter) */
+  margin: .5em;                     /* var(--gutter) */
+  padding: .5em;                    /* var(--gutter) */
+  background: #ccc;
+  text-align: center;
+}
+
+.tile-a { background: #abc }
+.tile-b,
+.tile-e { background: #edc }
+
+@supports (display: grid) and (width: calc(2*var(--gutter))) {
+  body {
+    padding: var(--gutter);
+  }
+  
+  .tile-container {
+    display: grid;
+    margin: 0;
+    grid-gap: var(--gutter);
+
+    /* fallback: 1 column */
+    grid-template-columns: var(--brick-width);
+    grid-template-rows: repeat(8, var(--brick-height));
+    grid-template-areas: "A" "B" "C" "D" "E" "F" "G" "H";
+  }
+
+  .tile {
+    width: calc(100% - 2*var(--gutter));
+    height: calc(100% - 2*var(--gutter));
+    margin: 0;
+    padding: var(--gutter);
+  }
+
+  .tile-a { grid-area: A }
+  .tile-b { grid-area: B }
+  .tile-c { grid-area: C }
+  .tile-d { grid-area: D }
+  .tile-e { grid-area: E }
+  .tile-f { grid-area: F }
+  .tile-g { grid-area: G }
+  .tile-h { grid-area: H }
+
+  /* 2 base columns */
+  @media (min-width: 19.5em) {      /* 3*var(--brick-width) + 4*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(2, var(--brick-width));
+      grid-template-rows: repeat(7, var(--brick-height));
+      grid-template-areas:
+        "A A"
+        "A A"
+        "B B"
+        "C D"
+        "E E"
+        "F G"
+        "none H";
+    }
+  }
+
+  /* 3 base columns */
+  @media (min-width: 29em) {        /* 3*var(--brick-width) + 4*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(3, var(--brick-width));
+      grid-template-rows: repeat(5, var(--brick-height));
+      grid-template-areas:
+        "A A C"
+        "A A D"
+        "B B F"
+        "E E G"
+        "none none H";
+    }
+  }
+
+  /* 4 base columns */
+  @media (min-width: 38.5em) {      /* 4*var(--brick-width) + 5*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(4, var(--brick-width));
+      grid-template-rows: repeat(4, var(--brick-height));
+      grid-template-areas:
+        "A A B B"
+        "A A C D"
+        "E E F G"
+        ". . . H";
+    }
+  }
+
+  /* 5 base columns */
+  @media (min-width: 48em) {        /* 5*var(--brick-width) + 6*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(5, var(--brick-width));
+      grid-template-rows: repeat(3, var(--brick-height));
+      grid-template-areas:
+        "A A B B C"
+        "A A D E E"
+        ". . F G H";
+    }
+  }
+
+  /* 6 base columns */
+  @media (min-width: 57.5em) {      /* 6*var(--brick-width) + 7*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(6, var(--brick-width));
+      grid-template-rows: repeat(3, var(--brick-height));
+      grid-template-areas:
+        "A A A B B C"
+        "A A A D E E"
+        "A A A F G H";
+    }
+  }
+
+  /* 7 base columns */
+  @media (min-width: 67em) {        /* 7*var(--brick-width) + 8*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(7, var(--brick-width));
+      grid-template-rows: repeat(3, var(--brick-height));
+      grid-template-areas:
+        "A A A B B C D"
+        "A A A E E F G"
+        "A A A . . . H";
+    }
+  }
+
+  /* 8 base columns */
+  @media (min-width: 76.5em) {      /* 8*var(--brick-width) + 9*var(--gutter) */
+    .tile-container {
+      grid-template-columns: repeat(8, var(--brick-width));
+      grid-template-rows: repeat(4, var(--brick-height));
+      grid-template-areas:
+        "A A A A B B B C"
+        "A A A A D E E E"
+        "A A A A . . F G"
+        "A A A A . . . H";
+    }
+  }
+}
+
+    </style>
+  </head>
+  <body>
+
+    <div class="tile-container">
+      <div class="tile tile-a">A</div>
+      <div class="tile tile-b">B</div>
+      <div class="tile tile-c">C</div>
+      <div class="tile tile-d">D</div>
+      <div class="tile tile-e">E</div>
+      <div class="tile tile-f">F</div>
+      <div class="tile tile-g">G</div>
+      <div class="tile tile-h">H</div>
+    </div>
+
+  </body>
+</html>
