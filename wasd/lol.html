@@ -97,20 +97,26 @@ const lock_prompt = document.getElementById('lock_prompt');
 const x_input = document.getElementById('x_input');
 const y_input = document.getElementById('y_input');
 
-function deltaUpdate(range, delta) {
-  value = parseFloat(range.value) + delta;
-  value = Math.round(value / parseFloat(range.step)) * parseFloat(range.step);
-  value = Math.min(value, parseFloat(range.max));
-  value = Math.max(value, parseFloat(range.min));
-
-  console.log([range.value, range.step, range.min, range.max, value]);
-  range.value = value;
+function makeDeltaUpdate(range) {
+  rangeMin = parseFloat(range.min);
+  rangeMax = parseFloat(range.max);
+  rangeStep = parseFloat(range.step);
+  return (delta) => {
+    value = parseFloat(range.value) + delta;
+    value = Math.round(value / rangeStep) * rangeStep;
+    value = Math.min(value, rangeMax);
+    value = Math.max(value, rangeMin);
+    range.value = value;
+  };
 }
+
+x_update = makeDeltaUpdate(x_input);
+y_update = makeDeltaUpdate(y_input);
 
 function onMouseMove(e) {
   // console.log([e.movementX, e.movementY]);
-  deltaUpdate(x_input, e.movementX / 40);
-  deltaUpdate(y_input, -e.movementY / 60);
+  x_update(e.movementX / 40);
+  y_update(-e.movementY / 60);
 }
 
 function onLockChange() {
@@ -126,7 +132,8 @@ function onLockChange() {
 document.addEventListener('pointerlockchange', onLockChange, false);
 
 lock_button.addEventListener('click', () => {
-  lock_element.requestPointerLock({ unadjustedMovement: true });
+  // lock_element.requestPointerLock({ unadjustedMovement: true });
+  lock_element.requestPointerLock()
 });
 
     </script>
