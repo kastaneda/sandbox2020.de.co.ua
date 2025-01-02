@@ -70,9 +70,14 @@ iframe {
   align-items: center;
 }
 
+#body.fullscreen .cell_c {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0; heigth: 100vh; width: 100vw;
+}
+
     </style>
   </head>
-  <body>
+  <body id="body">
     <h1>
       <!-- <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> and the -->
       Pointer Lock API
@@ -92,7 +97,7 @@ iframe {
         </div>
         <div id="lock_element" class="cell cell_c">
           <!-- iframe src="http://192.168.0.145:8080/browserfs.html"></iframe -->
-          <iframe src="dummy.html"></iframe>
+          <iframe id="lol" src="dummy1.html"></iframe>
           <div id="lock_prompt" class="instructions">
             <button id="lock_button" onclick="return false;">Click here to lock the pointer</a>
           </div>
@@ -108,10 +113,13 @@ const lock_prompt = document.getElementById('lock_prompt');
 const x_input = document.getElementById('x_input');
 const y_input = document.getElementById('y_input');
 
+const body = document.getElementById('body');
+const lol = document.getElementById('lol');
+
 function makeDeltaUpdate(range) {
-  rangeMin = parseFloat(range.min);
-  rangeMax = parseFloat(range.max);
-  rangeStep = parseFloat(range.step);
+  const rangeMin = parseFloat(range.min);
+  const rangeMax = parseFloat(range.max);
+  const rangeStep = parseFloat(range.step);
   return (delta) => {
     value = parseFloat(range.value) + delta;
     value = Math.round(value / rangeStep) * rangeStep;
@@ -134,9 +142,11 @@ function onLockChange() {
   if (document.pointerLockElement === lock_element) {
     document.addEventListener('mousemove', onMouseMove, false);
     lock_prompt.style.visibility = 'hidden';
+    lol.src = 'dummy.html';
   } else {
     document.removeEventListener('mousemove', onMouseMove, false);
     lock_prompt.style.visibility = 'visible';
+    lol.src = 'dummy1.html';
   }
 }
 
@@ -147,7 +157,14 @@ lock_button.addEventListener('click', () => {
   lock_element.requestPointerLock()
 });
 
-// todo: fullscreenchange
+
+window.addEventListener('resize', () => {
+  if (window.outerWidth == window.screen.width && window.outerHeight == window.screen.height) {
+    body.classList.add('fullscreen');
+  } else {
+    body.classList.remove('fullscreen');
+  }
+});
 
     </script>
   </body>
