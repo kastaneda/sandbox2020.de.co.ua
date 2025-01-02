@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="h">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,14 +75,25 @@ iframe {
   font-size: 175%;
 }
 
-#body.fullscreen .cell_c {
+#h.fullscreen, #h.fullscreen body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#h.fullscreen .cell_c {
   position: fixed;
-  left: 0; right: 0; top: 0; bottom: 0; heigth: 100vh; width: 100vw;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  heigth: 100vh;
+  width: 100vw;
 }
 
     </style>
   </head>
-  <body id="body">
+  <body>
     <h1>
       <!-- <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> and the -->
       Pointer Lock API
@@ -102,7 +113,7 @@ iframe {
         </div>
         <div id="lock_element" class="cell cell_c">
           <!-- iframe src="http://192.168.0.145:8080/browserfs.html"></iframe -->
-          <iframe id="lol" src="dummy1.html"></iframe>
+          <iframe id="lol" src="dummy1.html" scrolling="no"></iframe>
           <div id="lock_prompt" class="instructions">
             <button id="lock_button" onclick="return false;">Click here to lock the pointer</a>
           </div>
@@ -118,7 +129,7 @@ const lock_prompt = document.getElementById('lock_prompt');
 const x_input = document.getElementById('x_input');
 const y_input = document.getElementById('y_input');
 
-const body = document.getElementById('body');
+const html_element = document.getElementById('h');
 const lol = document.getElementById('lol');
 
 function makeDeltaUpdate(range) {
@@ -162,14 +173,25 @@ lock_button.addEventListener('click', () => {
   lock_element.requestPointerLock()
 });
 
+resizeTimeout = false;
 
-window.addEventListener('resize', () => {
+function afterResize() {
+  console.log([window.outerHeight, window.screen.height]);
   if (window.outerWidth == window.screen.width && window.outerHeight == window.screen.height) {
-    body.classList.add('fullscreen');
+    html_element.classList.add('fullscreen');
   } else {
-    body.classList.remove('fullscreen');
+    html_element.classList.remove('fullscreen');
   }
-});
+  resizeTimeout = false;
+}
+
+function onResize()
+{
+  if (resizeTimeout) clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(afterResize, 150);
+}
+
+window.addEventListener('resize', onResize, false);
 
     </script>
   </body>
