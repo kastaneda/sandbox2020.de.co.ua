@@ -36,7 +36,9 @@ input[type=range][orient=vertical] {
 }
 
 .container {
-  display: grid; 
+  display: grid;
+  max-width: 100vh;
+  max-height: 100vh;
   grid-template-columns: auto min-content;
   grid-template-rows: auto min-content;
   gap: .5em;
@@ -46,9 +48,9 @@ input[type=range][orient=vertical] {
 }
 .cell_x { grid-area: x; }
 .cell_y { grid-area: y; }
-.cell_c { grid-area: c; position: relative; }
+.cell_c { grid-area: c; position: relative; aspect-ratio: 4/3; }
 .cell_x input { width: 100%; }
-.cell_y input { min-height: 20em; }
+.cell_y input { /* height: FIXME; */ }
 
 iframe {
   width: 100%;
