@@ -37,21 +37,28 @@ input[type=range][orient=vertical] {
 
 .container {
   display: grid; 
-  grid-template-columns: auto auto min-content;
-  grid-template-rows: auto auto min-content;
+  grid-template-columns: auto min-content;
+  grid-template-rows: auto min-content;
   gap: .5em;
   grid-template-areas:
-    "c c y"
-    "c c y"
-    "x x .";
+    "c y"
+    "x .";
 }
 .cell_x { grid-area: x; }
 .cell_y { grid-area: y; }
-.cell_c { grid-area: c; background: #669; }
+.cell_c { grid-area: c; position: relative; }
 .cell_x input { width: 100%; }
 .cell_y input { min-height: 20em; }
 
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .instructions {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -82,6 +89,8 @@ input[type=range][orient=vertical] {
             orient="vertical" />
         </div>
         <div id="lock_element" class="cell cell_c">
+          <!-- iframe src="http://192.168.0.145:8080/browserfs.html"></iframe -->
+          <iframe src="dummy.html"></iframe>
           <div id="lock_prompt" class="instructions">
             <button id="lock_button" onclick="return false;">Click here to lock the pointer</a>
           </div>
