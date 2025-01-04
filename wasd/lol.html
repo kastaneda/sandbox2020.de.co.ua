@@ -100,6 +100,8 @@ iframe {
     </h1>
 
     <!-- p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p -->
+
+    <p>Current state: <code id="dbg">NULL</code></p>
     
     <form action="#">
       <div class="container">
@@ -129,9 +131,38 @@ const lock_button = document.getElementById('lock_button');
 const lock_prompt = document.getElementById('lock_prompt');
 const x_input = document.getElementById('x_input');
 const y_input = document.getElementById('y_input');
+const dbg_element = document.getElementById('dbg');
 
 const html_element = document.getElementById('h');
 const lol = document.getElementById('lol');
+
+////////////////////////////////////////////////////////////////////////
+// Sending the data
+
+lastSentControls = null;
+
+function getControls() {
+  return {
+    'x': parseFloat(x_input.value),
+    'y': parseFloat(y_input.value)
+  };
+}
+
+function updateControls() {
+  controls = getControls();
+  if (controls != lastSentControls) {
+    dbg.innerHTML = JSON.stringify(controls);
+    lastSentControls = controls;
+  }
+}
+
+const updateInterval = setInterval(updateControls, 175);
+
+////////////////////////////////////////////////////////////////////////
+// Handle the mouse movement
+
+const x_speed = 1 / 40;
+const y_speed = -1 / 60;
 
 function makeDeltaUpdate(range) {
   const rangeMin = parseFloat(range.min);
@@ -150,10 +181,12 @@ x_update = makeDeltaUpdate(x_input);
 y_update = makeDeltaUpdate(y_input);
 
 function onMouseMove(e) {
-  // console.log([e.movementX, e.movementY]);
-  x_update(e.movementX / 40);
-  y_update(-e.movementY / 60);
+  x_update(e.movementX * x_speed);
+  y_update(e.movementY * y_speed);
 }
+
+////////////////////////////////////////////////////////////////////////
+// Pointer lock
 
 function onLockChange() {
   if (document.pointerLockElement === lock_element) {
@@ -167,12 +200,15 @@ function onLockChange() {
   }
 }
 
-document.addEventListener('pointerlockchange', onLockChange, false);
+document.addEventListener('pointerlockchange', onLockChange);
 
 lock_button.addEventListener('click', () => {
   // lock_element.requestPointerLock({ unadjustedMovement: true });
   lock_element.requestPointerLock()
 });
+
+////////////////////////////////////////////////////////////////////////
+// Window resize and full-screen mode
 
 resizeTimeout = false;
 
@@ -193,7 +229,7 @@ function onResize()
   resizeTimeout = setTimeout(afterResize, 150);
 }
 
-window.addEventListener('resize', onResize, false);
+window.addEventListener('resize', onResize);
 afterResize();
 
     </script>
