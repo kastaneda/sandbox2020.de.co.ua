@@ -176,11 +176,11 @@ lock_button.addEventListener('click', () => {
 resizeTimeout = false;
 
 function afterResize() {
-  console.log([window.outerHeight, window.screen.height]);
   if (window.outerWidth == window.screen.width && window.outerHeight == window.screen.height) {
     html_element.classList.add('fullscreen');
   } else {
     html_element.classList.remove('fullscreen');
+    y_input.style.height = lol.offsetHeight + 'px';
   }
   resizeTimeout = false;
 }
@@ -188,10 +188,12 @@ function afterResize() {
 function onResize()
 {
   if (resizeTimeout) clearTimeout(resizeTimeout);
+  y_input.style.height = '';
   resizeTimeout = setTimeout(afterResize, 150);
 }
 
 window.addEventListener('resize', onResize, false);
+afterResize();
 
     </script>
   </body>
