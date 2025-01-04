@@ -101,7 +101,11 @@ iframe {
 
     <!-- p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p -->
 
-    <p>Current state: <code id="dbg">NULL</code></p>
+    <p>
+      MQTT connection: <span id="is_online">🟡 not yet</span>
+      &nbsp;&nbsp; &bull; &nbsp;&nbsp;
+      Controls: <code id="dbg_controls">NULL</code>
+    </p>
     
     <form action="#">
       <div class="container">
@@ -124,6 +128,7 @@ iframe {
       </div>
     </form>
 
+    <script src="mosquitto.js"></script>
     <script>
 
 const lock_element = document.getElementById('lock_element');
@@ -131,10 +136,43 @@ const lock_button = document.getElementById('lock_button');
 const lock_prompt = document.getElementById('lock_prompt');
 const x_input = document.getElementById('x_input');
 const y_input = document.getElementById('y_input');
-const dbg_element = document.getElementById('dbg');
+
+const is_online_element = document.getElementById('is_online');
+const dbg_element = document.getElementById('dbg_controls');
 
 const html_element = document.getElementById('h');
 const lol = document.getElementById('lol');
+
+////////////////////////////////////////////////////////////////////////
+// MQTT thing
+
+mq = new Mosquitto();
+mqOnline = false;
+
+myConnect = function () {
+  mq.connect('ws://192.168.0.82:9001');
+  mq.ws.onerror = null;
+  mq.subscribe('lol/+/feedback', 0);
+};
+
+mq.onconnect = function(rc) {
+  console.log('Connected to WebSocket server', rc);
+  mqOnline = true;
+  is_online_element.innerHTML = '🟢 online';
+};
+
+mq.ondisconnect = function(rc) {
+  console.warn('MQTT connection lost', rc);
+  mqOnline = false;
+  is_online_element.innerHTML = '🔴 offline';
+  setTimeout(myConnect, 1000);
+}
+
+mq.onmessage = function(topic, payload, qos) {
+  console.log('MQTT message', topic, payload, qos);
+};
+
+// myConnect();
 
 ////////////////////////////////////////////////////////////////////////
 // Sending the data
@@ -149,14 +187,17 @@ function getControls() {
 }
 
 function updateControls() {
-  controls = getControls();
+  controls = JSON.stringify(getControls());
   if (controls != lastSentControls) {
-    dbg.innerHTML = JSON.stringify(controls);
+    dbg_element.innerHTML = controls;
     lastSentControls = controls;
+    if (mqOnline) {
+      mq.publish('lol/controls', controls, 0, 0);
+    }
   }
 }
 
-const updateInterval = setInterval(updateControls, 175);
+const updateInterval = setInterval(updateControls, 125);
 
 ////////////////////////////////////////////////////////////////////////
 // Handle the mouse movement
@@ -235,4 +276,3 @@ afterResize();
     </script>
   </body>
 </html>
-    
